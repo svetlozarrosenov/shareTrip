@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
+
 
 class ActivitiesController extends Controller
 {
@@ -14,7 +16,15 @@ class ActivitiesController extends Controller
      */
     public function index()
     {
-        //
+        $activityTable = new \App\Activity();
+
+        $activities = $activityTable->join('participants', 'activities.id', '=', 'participants.activity_id')
+            ->join('users', 'users.id', '=', 'participants.user_id')
+            ->select('users.name', 'activities.title')
+            ->get()
+            ->toArray();
+
+        return $activities;
     }
 
     /**
@@ -25,7 +35,21 @@ class ActivitiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $currentUser = Auth::user();
+
+        $activity = new \App\Activity();
+
+        $participant = new \App\Participant();
+
+        $activityId = $activity->insertGetId( [
+            'title' => 'john@example.com', 
+            'description' => '0',
+        ] );
+
+        $participant->insert( [
+            'activity_id' => $activityId,
+            'user_id' => $currentUser->id
+        ] );
     }
 
     /**

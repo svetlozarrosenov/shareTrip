@@ -1363,7 +1363,6 @@ module.exports = function isAbsoluteURL(url) {
 
 
 var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
-var isValidXss = __webpack_require__(/*! ./isValidXss */ "./node_modules/axios/lib/helpers/isValidXss.js");
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -1383,10 +1382,6 @@ module.exports = (
     */
       function resolveURL(url) {
         var href = url;
-
-        if (isValidXss(url)) {
-          throw new Error('URL contains XSS injection attempt');
-        }
 
         if (msie) {
         // IE needs attribute set twice to normalize properties
@@ -1433,25 +1428,6 @@ module.exports = (
       };
     })()
 );
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/lib/helpers/isValidXss.js":
-/*!******************************************************!*\
-  !*** ./node_modules/axios/lib/helpers/isValidXss.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function isValidXss(requestURL) {
-  var xssRegex = /(\b)(on\w+)=|javascript|(<\s*)(\/*)script/gi;
-  return xssRegex.test(requestURL);
-};
-
 
 
 /***/ }),
@@ -1980,6 +1956,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3482,57 +3460,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      activities: []
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.getActivities();
+  },
+  methods: {
+    addActivity: function addActivity() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('activity', {
+        firstName: 'Fred',
+        lastName: 'Flintstone'
+      }).then(function (response) {})["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getActivities: function getActivities() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('activity', {}).then(function (response) {
+        _this.activities = response.data;
+        console.log(_this.activities);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   }
 });
 
@@ -38934,3619 +38890,2449 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("div", { staticClass: "content-wrapper" }, [
+      _vm._m(2),
+      _vm._v(" "),
+      _c("section", { staticClass: "content" }, [
+        _c("div", { staticClass: "container-fluid" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-8" }, [
+              _vm._m(5),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _c("div", { staticClass: "card" }, [
+                _vm._m(7),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body p-0" }, [
+                  _c("div", { staticClass: "table-responsive" }, [
+                    _c("table", { staticClass: "table m-0" }, [
+                      _vm._m(8),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.activities, function(activity) {
+                          return _c("tr", [
+                            _vm._m(9, true),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(activity.title))]),
+                            _vm._v(" "),
+                            _vm._m(10, true),
+                            _vm._v(" "),
+                            _vm._m(11, true)
+                          ])
+                        }),
+                        0
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-footer clearfix" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-sm btn-info float-left",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.addActivity($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Add Activity")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-sm btn-secondary float-right",
+                      attrs: { href: "javascript:void(0)" }
+                    },
+                    [_vm._v("View All Orders")]
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(12)
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("aside", { staticClass: "control-sidebar control-sidebar-dark" }),
+    _vm._v(" "),
+    _vm._m(13)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "nav",
-        {
-          staticClass:
-            "main-header navbar navbar-expand navbar-white navbar-light"
-        },
-        [
-          _c("ul", { staticClass: "navbar-nav" }, [
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: { "data-widget": "pushmenu", href: "#" }
-                },
-                [_c("i", { staticClass: "fas fa-bars" })]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item d-none d-sm-inline-block" }, [
-              _c(
-                "a",
-                { staticClass: "nav-link", attrs: { href: "index3.html" } },
-                [_vm._v("Home")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item d-none d-sm-inline-block" }, [
-              _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                _vm._v("Contact")
-              ])
-            ])
+    return _c(
+      "nav",
+      {
+        staticClass:
+          "main-header navbar navbar-expand navbar-white navbar-light"
+      },
+      [
+        _c("ul", { staticClass: "navbar-nav" }, [
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: { "data-widget": "pushmenu", href: "#" }
+              },
+              [_c("i", { staticClass: "fas fa-bars" })]
+            )
           ]),
           _vm._v(" "),
-          _c("form", { staticClass: "form-inline ml-3" }, [
-            _c("div", { staticClass: "input-group input-group-sm" }, [
-              _c("input", {
-                staticClass: "form-control form-control-navbar",
-                attrs: {
-                  type: "search",
-                  placeholder: "Search",
-                  "aria-label": "Search"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group-append" }, [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-navbar", attrs: { type: "submit" } },
-                  [_c("i", { staticClass: "fas fa-search" })]
-                )
-              ])
-            ])
+          _c("li", { staticClass: "nav-item d-none d-sm-inline-block" }, [
+            _c(
+              "a",
+              { staticClass: "nav-link", attrs: { href: "index3.html" } },
+              [_vm._v("Home")]
+            )
           ]),
           _vm._v(" "),
-          _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-            _c("li", { staticClass: "nav-item dropdown" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: { "data-toggle": "dropdown", href: "#" }
-                },
-                [
-                  _c("i", { staticClass: "far fa-comments" }),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    { staticClass: "badge badge-danger navbar-badge" },
-                    [_vm._v("3")]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "dropdown-menu dropdown-menu-lg dropdown-menu-right"
-                },
-                [
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [
-                      _c("div", { staticClass: "media" }, [
-                        _c("img", {
-                          staticClass: "img-size-50 mr-3 img-circle",
-                          attrs: {
-                            src: "dist/img/user1-128x128.jpg",
-                            alt: "User Avatar"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "media-body" }, [
-                          _c("h3", { staticClass: "dropdown-item-title" }, [
-                            _vm._v(
-                              "\n                                Brad Diesel\n                                "
-                            ),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "float-right text-sm text-danger"
-                              },
-                              [_c("i", { staticClass: "fas fa-star" })]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "text-sm" }, [
-                            _vm._v("Call me whenever you can...")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "text-sm text-muted" }, [
-                            _c("i", { staticClass: "far fa-clock mr-1" }),
-                            _vm._v(" 4 Hours Ago")
-                          ])
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-divider" }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [
-                      _c("div", { staticClass: "media" }, [
-                        _c("img", {
-                          staticClass: "img-size-50 img-circle mr-3",
-                          attrs: {
-                            src: "dist/img/user8-128x128.jpg",
-                            alt: "User Avatar"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "media-body" }, [
-                          _c("h3", { staticClass: "dropdown-item-title" }, [
-                            _vm._v(
-                              "\n                                John Pierce\n                                "
-                            ),
-                            _c(
-                              "span",
-                              { staticClass: "float-right text-sm text-muted" },
-                              [_c("i", { staticClass: "fas fa-star" })]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "text-sm" }, [
-                            _vm._v("I got your message bro")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "text-sm text-muted" }, [
-                            _c("i", { staticClass: "far fa-clock mr-1" }),
-                            _vm._v(" 4 Hours Ago")
-                          ])
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-divider" }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [
-                      _c("div", { staticClass: "media" }, [
-                        _c("img", {
-                          staticClass: "img-size-50 img-circle mr-3",
-                          attrs: {
-                            src: "dist/img/user3-128x128.jpg",
-                            alt: "User Avatar"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "media-body" }, [
-                          _c("h3", { staticClass: "dropdown-item-title" }, [
-                            _vm._v(
-                              "\n                                Nora Silvester\n                                "
-                            ),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "float-right text-sm text-warning"
-                              },
-                              [_c("i", { staticClass: "fas fa-star" })]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "text-sm" }, [
-                            _vm._v("The subject goes here")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "text-sm text-muted" }, [
-                            _c("i", { staticClass: "far fa-clock mr-1" }),
-                            _vm._v(" 4 Hours Ago")
-                          ])
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-divider" }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "dropdown-item dropdown-footer",
-                      attrs: { href: "#" }
-                    },
-                    [_vm._v("See All Messages")]
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item dropdown" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: { "data-toggle": "dropdown", href: "#" }
-                },
-                [
-                  _c("i", { staticClass: "far fa-bell" }),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    { staticClass: "badge badge-warning navbar-badge" },
-                    [_vm._v("15")]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "dropdown-menu dropdown-menu-lg dropdown-menu-right"
-                },
-                [
-                  _c("span", { staticClass: "dropdown-item dropdown-header" }, [
-                    _vm._v("15 Notifications")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-divider" }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [
-                      _c("i", { staticClass: "fas fa-envelope mr-2" }),
-                      _vm._v(" 4 new messages\n                    "),
-                      _c(
-                        "span",
-                        { staticClass: "float-right text-muted text-sm" },
-                        [_vm._v("3 mins")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-divider" }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [
-                      _c("i", { staticClass: "fas fa-users mr-2" }),
-                      _vm._v(" 8 friend requests\n                    "),
-                      _c(
-                        "span",
-                        { staticClass: "float-right text-muted text-sm" },
-                        [_vm._v("12 hours")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-divider" }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "dropdown-item", attrs: { href: "#" } },
-                    [
-                      _c("i", { staticClass: "fas fa-file mr-2" }),
-                      _vm._v(" 3 new reports\n                    "),
-                      _c(
-                        "span",
-                        { staticClass: "float-right text-muted text-sm" },
-                        [_vm._v("2 days")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-divider" }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "dropdown-item dropdown-footer",
-                      attrs: { href: "#" }
-                    },
-                    [_vm._v("See All Notifications")]
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: {
-                    "data-widget": "control-sidebar",
-                    "data-slide": "true",
-                    href: "#"
-                  }
-                },
-                [_c("i", { staticClass: "fas fa-th-large" })]
-              )
-            ])
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "aside",
-        { staticClass: "main-sidebar sidebar-dark-primary elevation-4" },
-        [
-          _c(
-            "a",
-            { staticClass: "brand-link", attrs: { href: "index3.html" } },
-            [
-              _c("img", {
-                staticClass: "brand-image img-circle elevation-3",
-                staticStyle: { opacity: ".8" },
-                attrs: {
-                  src: "dist/img/AdminLTELogo.png",
-                  alt: "AdminLTE Logo"
-                }
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "brand-text font-weight-light" }, [
-                _vm._v("AdminLTE 3")
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "sidebar" }, [
-            _c("div", { staticClass: "user-panel mt-3 pb-3 mb-3 d-flex" }, [
-              _c("div", { staticClass: "image" }, [
-                _c("img", {
-                  staticClass: "img-circle elevation-2",
-                  attrs: {
-                    src: "dist/img/user2-160x160.jpg",
-                    alt: "User Image"
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "info" }, [
-                _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
-                  _vm._v("username here")
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("nav", { staticClass: "mt-2" }, [
-              _c(
-                "ul",
-                {
-                  staticClass: "nav nav-pills nav-sidebar flex-column",
-                  attrs: {
-                    "data-widget": "treeview",
-                    role: "menu",
-                    "data-accordion": "false"
-                  }
-                },
-                [
-                  _c("li", { staticClass: "nav-item has-treeview menu-open" }, [
-                    _c(
-                      "a",
-                      { staticClass: "nav-link active", attrs: { href: "#" } },
-                      [
-                        _c("i", {
-                          staticClass: "nav-icon fas fa-tachometer-alt"
-                        }),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\n                            Dashboard\n                            "
-                          ),
-                          _c("i", { staticClass: "right fas fa-angle-left" })
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "nav nav-treeview" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "./index.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Dashboard v1")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link active",
-                            attrs: { href: "./index2.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Dashboard v2")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "./index3.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Dashboard v3")])
-                          ]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "pages/widgets.html" }
-                      },
-                      [
-                        _c("i", { staticClass: "nav-icon fas fa-th" }),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\n                            Widgets\n                            "
-                          ),
-                          _c(
-                            "span",
-                            { staticClass: "right badge badge-danger" },
-                            [_vm._v("New")]
-                          )
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item has-treeview" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", { staticClass: "nav-icon fas fa-copy" }),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                            Layout Options\n                            "
-                        ),
-                        _c("i", { staticClass: "fas fa-angle-left right" }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "badge badge-info right" }, [
-                          _vm._v("6")
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "nav nav-treeview" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/layout/top-nav.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Top Navigation")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/layout/top-nav-sidebar.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Top Navigation + Sidebar")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/layout/boxed.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Boxed")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/layout/fixed-sidebar.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Fixed Sidebar")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/layout/fixed-topnav.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Fixed Navbar")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/layout/fixed-footer.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Fixed Footer")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: {
-                              href: "pages/layout/collapsed-sidebar.html"
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Collapsed Sidebar")])
-                          ]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item has-treeview" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", { staticClass: "nav-icon fas fa-chart-pie" }),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                            Charts\n                            "
-                        ),
-                        _c("i", { staticClass: "right fas fa-angle-left" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "nav nav-treeview" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/charts/chartjs.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("ChartJS")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/charts/flot.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Flot")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/charts/inline.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Inline")])
-                          ]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item has-treeview" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", { staticClass: "nav-icon fas fa-tree" }),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                            UI Elements\n                            "
-                        ),
-                        _c("i", { staticClass: "fas fa-angle-left right" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "nav nav-treeview" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/UI/general.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("General")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/UI/icons.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Icons")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/UI/buttons.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Buttons")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/UI/sliders.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Sliders")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/UI/modals.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Modals & Alerts")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/UI/navbar.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Navbar & Tabs")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/UI/timeline.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Timeline")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/UI/ribbons.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Ribbons")])
-                          ]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item has-treeview" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", { staticClass: "nav-icon fas fa-edit" }),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                            Forms\n                            "
-                        ),
-                        _c("i", { staticClass: "fas fa-angle-left right" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "nav nav-treeview" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/forms/general.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("General Elements")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/forms/advanced.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Advanced Elements")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/forms/editors.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Editors")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/forms/validation.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Validation")])
-                          ]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item has-treeview" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", { staticClass: "nav-icon fas fa-table" }),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                            Tables\n                            "
-                        ),
-                        _c("i", { staticClass: "fas fa-angle-left right" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "nav nav-treeview" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/tables/simple.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Simple Tables")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/tables/data.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("DataTables")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/tables/jsgrid.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("jsGrid")])
-                          ]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-header" }, [_vm._v("EXAMPLES")]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "pages/calendar.html" }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "nav-icon fas fa-calendar-alt"
-                        }),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\n                            Calendar\n                            "
-                          ),
-                          _c(
-                            "span",
-                            { staticClass: "badge badge-info right" },
-                            [_vm._v("2")]
-                          )
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "pages/gallery.html" }
-                      },
-                      [
-                        _c("i", { staticClass: "nav-icon far fa-image" }),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\n                            Gallery\n                        "
-                          )
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item has-treeview" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", { staticClass: "nav-icon far fa-envelope" }),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                            Mailbox\n                            "
-                        ),
-                        _c("i", { staticClass: "fas fa-angle-left right" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "nav nav-treeview" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/mailbox/mailbox.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Inbox")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/mailbox/compose.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Compose")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/mailbox/read-mail.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Read")])
-                          ]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item has-treeview" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", { staticClass: "nav-icon fas fa-book" }),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                            Pages\n                            "
-                        ),
-                        _c("i", { staticClass: "fas fa-angle-left right" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "nav nav-treeview" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/invoice.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Invoice")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/profile.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Profile")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/e_commerce.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("E-commerce")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/projects.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Projects")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/project_add.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Project Add")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/project_edit.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Project Edit")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: {
-                              href: "pages/examples/project_detail.html"
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Project Detail")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/contacts.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Contacts")])
-                          ]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item has-treeview" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", { staticClass: "nav-icon far fa-plus-square" }),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                            Extras\n                            "
-                        ),
-                        _c("i", { staticClass: "fas fa-angle-left right" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "nav nav-treeview" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/login.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Login")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/register.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Register")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: {
-                              href: "pages/examples/forgot-password.html"
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Forgot Password")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: {
-                              href: "pages/examples/recover-password.html"
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Recover Password")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/lockscreen.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Lockscreen")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: {
-                              href: "pages/examples/legacy-user-menu.html"
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Legacy User Menu")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/language-menu.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Language Menu")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/404.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Error 404")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/500.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Error 500")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/pace.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Pace")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "pages/examples/blank.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Blank Page")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { href: "starter.html" }
-                          },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Starter Page")])
-                          ]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-header" }, [
-                    _vm._v("MISCELLANEOUS")
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { href: "https://adminlte.io/docs/3.0" }
-                      },
-                      [
-                        _c("i", { staticClass: "nav-icon fas fa-file" }),
-                        _vm._v(" "),
-                        _c("p", [_vm._v("Documentation")])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-header" }, [
-                    _vm._v("MULTI LEVEL EXAMPLE")
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", { staticClass: "fas fa-circle nav-icon" }),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("Level 1")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item has-treeview" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", { staticClass: "nav-icon fas fa-circle" }),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                            Level 1\n                            "
-                        ),
-                        _c("i", { staticClass: "right fas fa-angle-left" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "nav nav-treeview" }, [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          { staticClass: "nav-link", attrs: { href: "#" } },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Level 2")])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item has-treeview" }, [
-                        _c(
-                          "a",
-                          { staticClass: "nav-link", attrs: { href: "#" } },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(
-                                "\n                                    Level 2\n                                    "
-                              ),
-                              _c("i", {
-                                staticClass: "right fas fa-angle-left"
-                              })
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("ul", { staticClass: "nav nav-treeview" }, [
-                          _c("li", { staticClass: "nav-item" }, [
-                            _c(
-                              "a",
-                              { staticClass: "nav-link", attrs: { href: "#" } },
-                              [
-                                _c("i", {
-                                  staticClass: "far fa-dot-circle nav-icon"
-                                }),
-                                _vm._v(" "),
-                                _c("p", [_vm._v("Level 3")])
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("li", { staticClass: "nav-item" }, [
-                            _c(
-                              "a",
-                              { staticClass: "nav-link", attrs: { href: "#" } },
-                              [
-                                _c("i", {
-                                  staticClass: "far fa-dot-circle nav-icon"
-                                }),
-                                _vm._v(" "),
-                                _c("p", [_vm._v("Level 3")])
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("li", { staticClass: "nav-item" }, [
-                            _c(
-                              "a",
-                              { staticClass: "nav-link", attrs: { href: "#" } },
-                              [
-                                _c("i", {
-                                  staticClass: "far fa-dot-circle nav-icon"
-                                }),
-                                _vm._v(" "),
-                                _c("p", [_vm._v("Level 3")])
-                              ]
-                            )
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          { staticClass: "nav-link", attrs: { href: "#" } },
-                          [
-                            _c("i", { staticClass: "far fa-circle nav-icon" }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Level 2")])
-                          ]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", { staticClass: "fas fa-circle nav-icon" }),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("Level 1")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-header" }, [_vm._v("LABELS")]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", {
-                        staticClass: "nav-icon far fa-circle text-danger"
-                      }),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "text" }, [_vm._v("Important")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", {
-                        staticClass: "nav-icon far fa-circle text-warning"
-                      }),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("Warning")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-                      _c("i", {
-                        staticClass: "nav-icon far fa-circle text-info"
-                      }),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("Informational")])
-                    ])
-                  ])
-                ]
-              )
-            ])
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "content-wrapper" }, [
-        _c("div", { staticClass: "content-header" }, [
-          _c("div", { staticClass: "container-fluid" }, [
-            _c("div", { staticClass: "row mb-2" }, [
-              _c("div", { staticClass: "col-sm-6" }, [
-                _c("h1", { staticClass: "m-0 text-dark" }, [
-                  _vm._v("Dashboard v2")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-6" }, [
-                _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
-                  _c("li", { staticClass: "breadcrumb-item" }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "breadcrumb-item active" }, [
-                    _vm._v("Dashboard v2")
-                  ])
-                ])
-              ])
+          _c("li", { staticClass: "nav-item d-none d-sm-inline-block" }, [
+            _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+              _vm._v("Contact")
             ])
           ])
         ]),
         _vm._v(" "),
-        _c("section", { staticClass: "content" }, [
-          _c("div", { staticClass: "container-fluid" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-12 col-sm-6 col-md-3" }, [
-                _c("div", { staticClass: "info-box" }, [
-                  _c(
-                    "span",
-                    { staticClass: "info-box-icon bg-info elevation-1" },
-                    [_c("i", { staticClass: "fas fa-cog" })]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "info-box-content" }, [
-                    _c("span", { staticClass: "info-box-text" }, [
-                      _vm._v("CPU Traffic")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "info-box-number" }, [
-                      _vm._v(
-                        "\n                                10\n                                "
-                      ),
-                      _c("small", [_vm._v("%")])
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-12 col-sm-6 col-md-3" }, [
-                _c("div", { staticClass: "info-box mb-3" }, [
-                  _c(
-                    "span",
-                    { staticClass: "info-box-icon bg-danger elevation-1" },
-                    [_c("i", { staticClass: "fas fa-thumbs-up" })]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "info-box-content" }, [
-                    _c("span", { staticClass: "info-box-text" }, [
-                      _vm._v("Likes")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "info-box-number" }, [
-                      _vm._v("41,410")
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "clearfix hidden-md-up" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-12 col-sm-6 col-md-3" }, [
-                _c("div", { staticClass: "info-box mb-3" }, [
-                  _c(
-                    "span",
-                    { staticClass: "info-box-icon bg-success elevation-1" },
-                    [_c("i", { staticClass: "fas fa-shopping-cart" })]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "info-box-content" }, [
-                    _c("span", { staticClass: "info-box-text" }, [
-                      _vm._v("Sales")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "info-box-number" }, [
-                      _vm._v("760")
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-12 col-sm-6 col-md-3" }, [
-                _c("div", { staticClass: "info-box mb-3" }, [
-                  _c(
-                    "span",
-                    { staticClass: "info-box-icon bg-warning elevation-1" },
-                    [_c("i", { staticClass: "fas fa-users" })]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "info-box-content" }, [
-                    _c("span", { staticClass: "info-box-text" }, [
-                      _vm._v("New Members")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "info-box-number" }, [
-                      _vm._v("2,000")
-                    ])
-                  ])
-                ])
-              ])
-            ]),
+        _c("form", { staticClass: "form-inline ml-3" }, [
+          _c("div", { staticClass: "input-group input-group-sm" }, [
+            _c("input", {
+              staticClass: "form-control form-control-navbar",
+              attrs: {
+                type: "search",
+                placeholder: "Search",
+                "aria-label": "Search"
+              }
+            }),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c("div", { staticClass: "card" }, [
-                  _c("div", { staticClass: "card-header" }, [
-                    _c("h5", { staticClass: "card-title" }, [
-                      _vm._v("Monthly Recap Report")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-tools" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-tool",
-                          attrs: {
-                            type: "button",
-                            "data-card-widget": "collapse"
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-minus" })]
-                      ),
+            _c("div", { staticClass: "input-group-append" }, [
+              _c(
+                "button",
+                { staticClass: "btn btn-navbar", attrs: { type: "submit" } },
+                [_c("i", { staticClass: "fas fa-search" })]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+          _c("li", { staticClass: "nav-item dropdown" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: { "data-toggle": "dropdown", href: "#" }
+              },
+              [
+                _c("i", { staticClass: "far fa-comments" }),
+                _vm._v(" "),
+                _c("span", { staticClass: "badge badge-danger navbar-badge" }, [
+                  _vm._v("3")
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "dropdown-menu dropdown-menu-lg dropdown-menu-right"
+              },
+              [
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [
+                    _c("div", { staticClass: "media" }, [
+                      _c("img", {
+                        staticClass: "img-size-50 mr-3 img-circle",
+                        attrs: {
+                          src: "dist/img/user1-128x128.jpg",
+                          alt: "User Avatar"
+                        }
+                      }),
                       _vm._v(" "),
-                      _c("div", { staticClass: "btn-group" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-tool dropdown-toggle",
-                            attrs: { type: "button", "data-toggle": "dropdown" }
-                          },
-                          [_c("i", { staticClass: "fas fa-wrench" })]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "dropdown-menu dropdown-menu-right",
-                            attrs: { role: "menu" }
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "dropdown-item",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Action")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "dropdown-item",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Another action")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "dropdown-item",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Something else here")]
-                            ),
-                            _vm._v(" "),
-                            _c("a", { staticClass: "dropdown-divider" }),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "dropdown-item",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Separated link")]
-                            )
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-tool",
-                          attrs: {
-                            type: "button",
-                            "data-card-widget": "remove"
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-times" })]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-8" }, [
-                        _c("p", { staticClass: "text-center" }, [
-                          _c("strong", [
-                            _vm._v("Sales: 1 Jan, 2014 - 30 Jul, 2014")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "chart" }, [
-                          _c("canvas", {
-                            staticStyle: { height: "180px" },
-                            attrs: { id: "salesChart", height: "180" }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("p", { staticClass: "text-center" }, [
-                          _c("strong", [_vm._v("Goal Completion")])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "progress-group" }, [
+                      _c("div", { staticClass: "media-body" }, [
+                        _c("h3", { staticClass: "dropdown-item-title" }, [
                           _vm._v(
-                            "\n                                        Add Products to Cart\n                                        "
+                            "\n                                Brad Diesel\n                                "
                           ),
-                          _c("span", { staticClass: "float-right" }, [
-                            _c("b", [_vm._v("160")]),
-                            _vm._v("/200")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "progress progress-sm" }, [
-                            _c("div", {
-                              staticClass: "progress-bar bg-primary",
-                              staticStyle: { width: "80%" }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "progress-group" }, [
-                          _vm._v(
-                            "\n                                        Complete Purchase\n                                        "
-                          ),
-                          _c("span", { staticClass: "float-right" }, [
-                            _c("b", [_vm._v("310")]),
-                            _vm._v("/400")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "progress progress-sm" }, [
-                            _c("div", {
-                              staticClass: "progress-bar bg-danger",
-                              staticStyle: { width: "75%" }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "progress-group" }, [
-                          _c("span", { staticClass: "progress-text" }, [
-                            _vm._v("Visit Premium Page")
-                          ]),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "float-right" }, [
-                            _c("b", [_vm._v("480")]),
-                            _vm._v("/800")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "progress progress-sm" }, [
-                            _c("div", {
-                              staticClass: "progress-bar bg-success",
-                              staticStyle: { width: "60%" }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "progress-group" }, [
-                          _vm._v(
-                            "\n                                        Send Inquiries\n                                        "
-                          ),
-                          _c("span", { staticClass: "float-right" }, [
-                            _c("b", [_vm._v("250")]),
-                            _vm._v("/500")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "progress progress-sm" }, [
-                            _c("div", {
-                              staticClass: "progress-bar bg-warning",
-                              staticStyle: { width: "50%" }
-                            })
-                          ])
-                        ])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-sm-3 col-6" }, [
-                        _c(
-                          "div",
-                          { staticClass: "description-block border-right" },
-                          [
-                            _c(
-                              "span",
-                              {
-                                staticClass:
-                                  "description-percentage text-success"
-                              },
-                              [
-                                _c("i", { staticClass: "fas fa-caret-up" }),
-                                _vm._v(" 17%")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("h5", { staticClass: "description-header" }, [
-                              _vm._v("$35,210.43")
-                            ]),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "description-text" }, [
-                              _vm._v("TOTAL REVENUE")
-                            ])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-3 col-6" }, [
-                        _c(
-                          "div",
-                          { staticClass: "description-block border-right" },
-                          [
-                            _c(
-                              "span",
-                              {
-                                staticClass:
-                                  "description-percentage text-warning"
-                              },
-                              [
-                                _c("i", { staticClass: "fas fa-caret-left" }),
-                                _vm._v(" 0%")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("h5", { staticClass: "description-header" }, [
-                              _vm._v("$10,390.90")
-                            ]),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "description-text" }, [
-                              _vm._v("TOTAL COST")
-                            ])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-3 col-6" }, [
-                        _c(
-                          "div",
-                          { staticClass: "description-block border-right" },
-                          [
-                            _c(
-                              "span",
-                              {
-                                staticClass:
-                                  "description-percentage text-success"
-                              },
-                              [
-                                _c("i", { staticClass: "fas fa-caret-up" }),
-                                _vm._v(" 20%")
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("h5", { staticClass: "description-header" }, [
-                              _vm._v("$24,813.53")
-                            ]),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "description-text" }, [
-                              _vm._v("TOTAL PROFIT")
-                            ])
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-3 col-6" }, [
-                        _c("div", { staticClass: "description-block" }, [
                           _c(
                             "span",
-                            {
-                              staticClass: "description-percentage text-danger"
-                            },
-                            [
-                              _c("i", { staticClass: "fas fa-caret-down" }),
-                              _vm._v(" 18%")
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("h5", { staticClass: "description-header" }, [
-                            _vm._v("1200")
-                          ]),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "description-text" }, [
-                            _vm._v("GOAL COMPLETIONS")
-                          ])
+                            { staticClass: "float-right text-sm text-danger" },
+                            [_c("i", { staticClass: "fas fa-star" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text-sm" }, [
+                          _vm._v("Call me whenever you can...")
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text-sm text-muted" }, [
+                          _c("i", { staticClass: "far fa-clock mr-1" }),
+                          _vm._v(" 4 Hours Ago")
                         ])
                       ])
                     ])
-                  ])
-                ])
-              ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "dropdown-divider" }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [
+                    _c("div", { staticClass: "media" }, [
+                      _c("img", {
+                        staticClass: "img-size-50 img-circle mr-3",
+                        attrs: {
+                          src: "dist/img/user8-128x128.jpg",
+                          alt: "User Avatar"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "media-body" }, [
+                        _c("h3", { staticClass: "dropdown-item-title" }, [
+                          _vm._v(
+                            "\n                                John Pierce\n                                "
+                          ),
+                          _c(
+                            "span",
+                            { staticClass: "float-right text-sm text-muted" },
+                            [_c("i", { staticClass: "fas fa-star" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text-sm" }, [
+                          _vm._v("I got your message bro")
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text-sm text-muted" }, [
+                          _c("i", { staticClass: "far fa-clock mr-1" }),
+                          _vm._v(" 4 Hours Ago")
+                        ])
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "dropdown-divider" }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [
+                    _c("div", { staticClass: "media" }, [
+                      _c("img", {
+                        staticClass: "img-size-50 img-circle mr-3",
+                        attrs: {
+                          src: "dist/img/user3-128x128.jpg",
+                          alt: "User Avatar"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "media-body" }, [
+                        _c("h3", { staticClass: "dropdown-item-title" }, [
+                          _vm._v(
+                            "\n                                Nora Silvester\n                                "
+                          ),
+                          _c(
+                            "span",
+                            { staticClass: "float-right text-sm text-warning" },
+                            [_c("i", { staticClass: "fas fa-star" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text-sm" }, [
+                          _vm._v("The subject goes here")
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text-sm text-muted" }, [
+                          _c("i", { staticClass: "far fa-clock mr-1" }),
+                          _vm._v(" 4 Hours Ago")
+                        ])
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "dropdown-divider" }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item dropdown-footer",
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v("See All Messages")]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item dropdown" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: { "data-toggle": "dropdown", href: "#" }
+              },
+              [
+                _c("i", { staticClass: "far fa-bell" }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "badge badge-warning navbar-badge" },
+                  [_vm._v("15")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "dropdown-menu dropdown-menu-lg dropdown-menu-right"
+              },
+              [
+                _c("span", { staticClass: "dropdown-item dropdown-header" }, [
+                  _vm._v("15 Notifications")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "dropdown-divider" }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [
+                    _c("i", { staticClass: "fas fa-envelope mr-2" }),
+                    _vm._v(" 4 new messages\n                    "),
+                    _c(
+                      "span",
+                      { staticClass: "float-right text-muted text-sm" },
+                      [_vm._v("3 mins")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "dropdown-divider" }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [
+                    _c("i", { staticClass: "fas fa-users mr-2" }),
+                    _vm._v(" 8 friend requests\n                    "),
+                    _c(
+                      "span",
+                      { staticClass: "float-right text-muted text-sm" },
+                      [_vm._v("12 hours")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "dropdown-divider" }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [
+                    _c("i", { staticClass: "fas fa-file mr-2" }),
+                    _vm._v(" 3 new reports\n                    "),
+                    _c(
+                      "span",
+                      { staticClass: "float-right text-muted text-sm" },
+                      [_vm._v("2 days")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "dropdown-divider" }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item dropdown-footer",
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v("See All Notifications")]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                attrs: {
+                  "data-widget": "control-sidebar",
+                  "data-slide": "true",
+                  href: "#"
+                }
+              },
+              [_c("i", { staticClass: "fas fa-th-large" })]
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "aside",
+      { staticClass: "main-sidebar sidebar-dark-primary elevation-4" },
+      [
+        _c("a", { staticClass: "brand-link", attrs: { href: "index3.html" } }, [
+          _c("img", {
+            staticClass: "brand-image img-circle elevation-3",
+            staticStyle: { opacity: ".8" },
+            attrs: { src: "dist/img/AdminLTELogo.png", alt: "AdminLTE Logo" }
+          }),
+          _vm._v(" "),
+          _c("span", { staticClass: "brand-text font-weight-light" }, [
+            _vm._v("AdminLTE 3")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "sidebar" }, [
+          _c("div", { staticClass: "user-panel mt-3 pb-3 mb-3 d-flex" }, [
+            _c("div", { staticClass: "image" }, [
+              _c("img", {
+                staticClass: "img-circle elevation-2",
+                attrs: { src: "dist/img/user2-160x160.jpg", alt: "User Image" }
+              })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-8" }, [
-                _c("div", { staticClass: "card" }, [
-                  _c("div", { staticClass: "card-header" }, [
-                    _c("h3", { staticClass: "card-title" }, [
-                      _vm._v("US-Visitors Report")
+            _c("div", { staticClass: "info" }, [
+              _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
+                _vm._v("username here")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("nav", { staticClass: "mt-2" }, [
+            _c(
+              "ul",
+              {
+                staticClass: "nav nav-pills nav-sidebar flex-column",
+                attrs: {
+                  "data-widget": "treeview",
+                  role: "menu",
+                  "data-accordion": "false"
+                }
+              },
+              [
+                _c("li", { staticClass: "nav-item has-treeview menu-open" }, [
+                  _c(
+                    "a",
+                    { staticClass: "nav-link active", attrs: { href: "#" } },
+                    [
+                      _c("i", {
+                        staticClass: "nav-icon fas fa-tachometer-alt"
+                      }),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                            Dashboard\n                            "
+                        ),
+                        _c("i", { staticClass: "right fas fa-angle-left" })
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "nav nav-treeview" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "./index.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Dashboard v1")])
+                        ]
+                      )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "card-tools" }, [
+                    _c("li", { staticClass: "nav-item" }, [
                       _c(
-                        "button",
+                        "a",
                         {
-                          staticClass: "btn btn-tool",
-                          attrs: {
-                            type: "button",
-                            "data-card-widget": "collapse"
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-minus" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-tool",
-                          attrs: {
-                            type: "button",
-                            "data-card-widget": "remove"
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-times" })]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-body p-0" }, [
-                    _c("div", { staticClass: "d-md-flex" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "p-1 flex-fill",
-                          staticStyle: { overflow: "hidden" }
+                          staticClass: "nav-link active",
+                          attrs: { href: "./index2.html" }
                         },
                         [
-                          _c(
-                            "div",
-                            {
-                              staticStyle: {
-                                height: "325px",
-                                overflow: "hidden"
-                              },
-                              attrs: { id: "world-map-markers" }
-                            },
-                            [_c("div", { staticClass: "map" })]
-                          )
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Dashboard v2")])
                         ]
-                      ),
-                      _vm._v(" "),
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
                       _c(
-                        "div",
+                        "a",
                         {
-                          staticClass:
-                            "card-pane-right bg-success pt-2 pb-2 pl-4 pr-4"
+                          staticClass: "nav-link",
+                          attrs: { href: "./index3.html" }
                         },
                         [
-                          _c("div", { staticClass: "description-block mb-4" }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "sparkbar pad",
-                                attrs: { "data-color": "#fff" }
-                              },
-                              [_vm._v("90,70,90,70,75,80,70")]
-                            ),
-                            _vm._v(" "),
-                            _c("h5", { staticClass: "description-header" }, [
-                              _vm._v("8390")
-                            ]),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "description-text" }, [
-                              _vm._v("Visits")
-                            ])
-                          ]),
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
                           _vm._v(" "),
-                          _c("div", { staticClass: "description-block mb-4" }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "sparkbar pad",
-                                attrs: { "data-color": "#fff" }
-                              },
-                              [_vm._v("90,50,90,70,61,83,63")]
-                            ),
-                            _vm._v(" "),
-                            _c("h5", { staticClass: "description-header" }, [
-                              _vm._v("30%")
-                            ]),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "description-text" }, [
-                              _vm._v("Referrals")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "description-block" }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "sparkbar pad",
-                                attrs: { "data-color": "#fff" }
-                              },
-                              [_vm._v("90,50,90,70,61,83,63")]
-                            ),
-                            _vm._v(" "),
-                            _c("h5", { staticClass: "description-header" }, [
-                              _vm._v("70%")
-                            ]),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "description-text" }, [
-                              _vm._v("Organic")
-                            ])
-                          ])
+                          _c("p", [_vm._v("Dashboard v3")])
                         ]
                       )
                     ])
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c(
-                      "div",
-                      { staticClass: "card direct-chat direct-chat-warning" },
-                      [
-                        _c("div", { staticClass: "card-header" }, [
-                          _c("h3", { staticClass: "card-title" }, [
-                            _vm._v("Direct Chat")
-                          ]),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { href: "pages/widgets.html" }
+                    },
+                    [
+                      _c("i", { staticClass: "nav-icon fas fa-th" }),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                            Widgets\n                            "
+                        ),
+                        _c(
+                          "span",
+                          { staticClass: "right badge badge-danger" },
+                          [_vm._v("New")]
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item has-treeview" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "nav-icon fas fa-copy" }),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                            Layout Options\n                            "
+                      ),
+                      _c("i", { staticClass: "fas fa-angle-left right" }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "badge badge-info right" }, [
+                        _vm._v("6")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "nav nav-treeview" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/layout/top-nav.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
                           _vm._v(" "),
-                          _c("div", { staticClass: "card-tools" }, [
-                            _c(
-                              "span",
-                              {
-                                staticClass: "badge badge-warning",
-                                attrs: {
-                                  "data-toggle": "tooltip",
-                                  title: "3 New Messages"
-                                }
-                              },
-                              [_vm._v("3")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-tool",
-                                attrs: {
-                                  type: "button",
-                                  "data-card-widget": "collapse"
-                                }
-                              },
-                              [_c("i", { staticClass: "fas fa-minus" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-tool",
-                                attrs: {
-                                  type: "button",
-                                  "data-toggle": "tooltip",
-                                  title: "Contacts",
-                                  "data-widget": "chat-pane-toggle"
-                                }
-                              },
-                              [_c("i", { staticClass: "fas fa-comments" })]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-tool",
-                                attrs: {
-                                  type: "button",
-                                  "data-card-widget": "remove"
-                                }
-                              },
-                              [_c("i", { staticClass: "fas fa-times" })]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "card-body" }, [
-                          _c("div", { staticClass: "direct-chat-messages" }, [
-                            _c("div", { staticClass: "direct-chat-msg" }, [
-                              _c(
-                                "div",
-                                { staticClass: "direct-chat-infos clearfix" },
-                                [
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass: "direct-chat-name float-left"
-                                    },
-                                    [_vm._v("Alexander Pierce")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "direct-chat-timestamp float-right"
-                                    },
-                                    [_vm._v("23 Jan 2:00 pm")]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("img", {
-                                staticClass: "direct-chat-img",
-                                attrs: {
-                                  src: "dist/img/user1-128x128.jpg",
-                                  alt: "message user image"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "direct-chat-text" }, [
-                                _vm._v(
-                                  "\n                                                Is this template really for free? That's unbelievable!\n                                            "
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "direct-chat-msg right" },
-                              [
-                                _c(
-                                  "div",
-                                  { staticClass: "direct-chat-infos clearfix" },
-                                  [
-                                    _c(
-                                      "span",
-                                      {
-                                        staticClass:
-                                          "direct-chat-name float-right"
-                                      },
-                                      [_vm._v("Sarah Bullock")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "span",
-                                      {
-                                        staticClass:
-                                          "direct-chat-timestamp float-left"
-                                      },
-                                      [_vm._v("23 Jan 2:05 pm")]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("img", {
-                                  staticClass: "direct-chat-img",
-                                  attrs: {
-                                    src: "dist/img/user3-128x128.jpg",
-                                    alt: "message user image"
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "direct-chat-text" }, [
-                                  _vm._v(
-                                    "\n                                                You better believe it!\n                                            "
-                                  )
-                                ])
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "direct-chat-msg" }, [
-                              _c(
-                                "div",
-                                { staticClass: "direct-chat-infos clearfix" },
-                                [
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass: "direct-chat-name float-left"
-                                    },
-                                    [_vm._v("Alexander Pierce")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "direct-chat-timestamp float-right"
-                                    },
-                                    [_vm._v("23 Jan 5:37 pm")]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("img", {
-                                staticClass: "direct-chat-img",
-                                attrs: {
-                                  src: "dist/img/user1-128x128.jpg",
-                                  alt: "message user image"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "direct-chat-text" }, [
-                                _vm._v(
-                                  "\n                                                Working with AdminLTE on a great new app! Wanna join?\n                                            "
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "direct-chat-msg right" },
-                              [
-                                _c(
-                                  "div",
-                                  { staticClass: "direct-chat-infos clearfix" },
-                                  [
-                                    _c(
-                                      "span",
-                                      {
-                                        staticClass:
-                                          "direct-chat-name float-right"
-                                      },
-                                      [_vm._v("Sarah Bullock")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "span",
-                                      {
-                                        staticClass:
-                                          "direct-chat-timestamp float-left"
-                                      },
-                                      [_vm._v("23 Jan 6:10 pm")]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("img", {
-                                  staticClass: "direct-chat-img",
-                                  attrs: {
-                                    src: "dist/img/user3-128x128.jpg",
-                                    alt: "message user image"
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "direct-chat-text" }, [
-                                  _vm._v(
-                                    "\n                                                I would love to.\n                                            "
-                                  )
-                                ])
-                              ]
-                            )
-                          ]),
+                          _c("p", [_vm._v("Top Navigation")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/layout/top-nav-sidebar.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
                           _vm._v(" "),
-                          _c("div", { staticClass: "direct-chat-contacts" }, [
-                            _c("ul", { staticClass: "contacts-list" }, [
-                              _c("li", [
-                                _c("a", { attrs: { href: "#" } }, [
-                                  _c("img", {
-                                    staticClass: "contacts-list-img",
-                                    attrs: { src: "dist/img/user1-128x128.jpg" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "contacts-list-info" },
-                                    [
-                                      _c(
-                                        "span",
-                                        { staticClass: "contacts-list-name" },
-                                        [
-                                          _vm._v(
-                                            "\n                                                            Count Dracula\n                                                            "
-                                          ),
-                                          _c(
-                                            "small",
-                                            {
-                                              staticClass:
-                                                "contacts-list-date float-right"
-                                            },
-                                            [_vm._v("2/28/2015")]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        { staticClass: "contacts-list-msg" },
-                                        [_vm._v("How have you been? I was...")]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#" } }, [
-                                  _c("img", {
-                                    staticClass: "contacts-list-img",
-                                    attrs: { src: "dist/img/user7-128x128.jpg" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "contacts-list-info" },
-                                    [
-                                      _c(
-                                        "span",
-                                        { staticClass: "contacts-list-name" },
-                                        [
-                                          _vm._v(
-                                            "\n                                                            Sarah Doe\n                                                            "
-                                          ),
-                                          _c(
-                                            "small",
-                                            {
-                                              staticClass:
-                                                "contacts-list-date float-right"
-                                            },
-                                            [_vm._v("2/23/2015")]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        { staticClass: "contacts-list-msg" },
-                                        [_vm._v("I will be waiting for...")]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#" } }, [
-                                  _c("img", {
-                                    staticClass: "contacts-list-img",
-                                    attrs: { src: "dist/img/user3-128x128.jpg" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "contacts-list-info" },
-                                    [
-                                      _c(
-                                        "span",
-                                        { staticClass: "contacts-list-name" },
-                                        [
-                                          _vm._v(
-                                            "\n                                                            Nadia Jolie\n                                                            "
-                                          ),
-                                          _c(
-                                            "small",
-                                            {
-                                              staticClass:
-                                                "contacts-list-date float-right"
-                                            },
-                                            [_vm._v("2/20/2015")]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        { staticClass: "contacts-list-msg" },
-                                        [_vm._v("I'll call you back at...")]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#" } }, [
-                                  _c("img", {
-                                    staticClass: "contacts-list-img",
-                                    attrs: { src: "dist/img/user5-128x128.jpg" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "contacts-list-info" },
-                                    [
-                                      _c(
-                                        "span",
-                                        { staticClass: "contacts-list-name" },
-                                        [
-                                          _vm._v(
-                                            "\n                                                            Nora S. Vans\n                                                            "
-                                          ),
-                                          _c(
-                                            "small",
-                                            {
-                                              staticClass:
-                                                "contacts-list-date float-right"
-                                            },
-                                            [_vm._v("2/10/2015")]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        { staticClass: "contacts-list-msg" },
-                                        [_vm._v("Where is your new...")]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#" } }, [
-                                  _c("img", {
-                                    staticClass: "contacts-list-img",
-                                    attrs: { src: "dist/img/user6-128x128.jpg" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "contacts-list-info" },
-                                    [
-                                      _c(
-                                        "span",
-                                        { staticClass: "contacts-list-name" },
-                                        [
-                                          _vm._v(
-                                            "\n                                                            John K.\n                                                            "
-                                          ),
-                                          _c(
-                                            "small",
-                                            {
-                                              staticClass:
-                                                "contacts-list-date float-right"
-                                            },
-                                            [_vm._v("1/27/2015")]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        { staticClass: "contacts-list-msg" },
-                                        [_vm._v("Can I take a look at...")]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("a", { attrs: { href: "#" } }, [
-                                  _c("img", {
-                                    staticClass: "contacts-list-img",
-                                    attrs: { src: "dist/img/user8-128x128.jpg" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "contacts-list-info" },
-                                    [
-                                      _c(
-                                        "span",
-                                        { staticClass: "contacts-list-name" },
-                                        [
-                                          _vm._v(
-                                            "\n                                                            Kenneth M.\n                                                            "
-                                          ),
-                                          _c(
-                                            "small",
-                                            {
-                                              staticClass:
-                                                "contacts-list-date float-right"
-                                            },
-                                            [_vm._v("1/4/2015")]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        { staticClass: "contacts-list-msg" },
-                                        [_vm._v("Never mind I found...")]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ])
-                            ])
+                          _c("p", [_vm._v("Top Navigation + Sidebar")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/layout/boxed.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Boxed")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/layout/fixed-sidebar.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Fixed Sidebar")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/layout/fixed-topnav.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Fixed Navbar")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/layout/fixed-footer.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Fixed Footer")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/layout/collapsed-sidebar.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Collapsed Sidebar")])
+                        ]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item has-treeview" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "nav-icon fas fa-chart-pie" }),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                            Charts\n                            "
+                      ),
+                      _c("i", { staticClass: "right fas fa-angle-left" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "nav nav-treeview" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/charts/chartjs.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("ChartJS")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/charts/flot.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Flot")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/charts/inline.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Inline")])
+                        ]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item has-treeview" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "nav-icon fas fa-tree" }),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                            UI Elements\n                            "
+                      ),
+                      _c("i", { staticClass: "fas fa-angle-left right" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "nav nav-treeview" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/UI/general.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("General")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/UI/icons.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Icons")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/UI/buttons.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Buttons")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/UI/sliders.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Sliders")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/UI/modals.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Modals & Alerts")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/UI/navbar.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Navbar & Tabs")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/UI/timeline.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Timeline")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/UI/ribbons.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Ribbons")])
+                        ]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item has-treeview" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "nav-icon fas fa-edit" }),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                            Forms\n                            "
+                      ),
+                      _c("i", { staticClass: "fas fa-angle-left right" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "nav nav-treeview" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/forms/general.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("General Elements")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/forms/advanced.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Advanced Elements")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/forms/editors.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Editors")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/forms/validation.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Validation")])
+                        ]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item has-treeview" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "nav-icon fas fa-table" }),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                            Tables\n                            "
+                      ),
+                      _c("i", { staticClass: "fas fa-angle-left right" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "nav nav-treeview" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/tables/simple.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Simple Tables")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/tables/data.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("DataTables")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/tables/jsgrid.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("jsGrid")])
+                        ]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-header" }, [_vm._v("EXAMPLES")]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { href: "pages/calendar.html" }
+                    },
+                    [
+                      _c("i", { staticClass: "nav-icon fas fa-calendar-alt" }),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                            Calendar\n                            "
+                        ),
+                        _c("span", { staticClass: "badge badge-info right" }, [
+                          _vm._v("2")
+                        ])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { href: "pages/gallery.html" }
+                    },
+                    [
+                      _c("i", { staticClass: "nav-icon far fa-image" }),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                            Gallery\n                        "
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item has-treeview" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "nav-icon far fa-envelope" }),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                            Mailbox\n                            "
+                      ),
+                      _c("i", { staticClass: "fas fa-angle-left right" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "nav nav-treeview" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/mailbox/mailbox.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Inbox")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/mailbox/compose.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Compose")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/mailbox/read-mail.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Read")])
+                        ]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item has-treeview" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "nav-icon fas fa-book" }),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                            Pages\n                            "
+                      ),
+                      _c("i", { staticClass: "fas fa-angle-left right" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "nav nav-treeview" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/invoice.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Invoice")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/profile.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Profile")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/e_commerce.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("E-commerce")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/projects.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Projects")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/project_add.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Project Add")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/project_edit.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Project Edit")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/project_detail.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Project Detail")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/contacts.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Contacts")])
+                        ]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item has-treeview" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "nav-icon far fa-plus-square" }),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                            Extras\n                            "
+                      ),
+                      _c("i", { staticClass: "fas fa-angle-left right" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "nav nav-treeview" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/login.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Login")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/register.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Register")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/forgot-password.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Forgot Password")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: {
+                            href: "pages/examples/recover-password.html"
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Recover Password")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/lockscreen.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Lockscreen")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: {
+                            href: "pages/examples/legacy-user-menu.html"
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Legacy User Menu")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/language-menu.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Language Menu")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/404.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Error 404")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/500.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Error 500")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/pace.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Pace")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "pages/examples/blank.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Blank Page")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "starter.html" }
+                        },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Starter Page")])
+                        ]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-header" }, [
+                  _vm._v("MISCELLANEOUS")
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { href: "https://adminlte.io/docs/3.0" }
+                    },
+                    [
+                      _c("i", { staticClass: "nav-icon fas fa-file" }),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Documentation")])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-header" }, [
+                  _vm._v("MULTI LEVEL EXAMPLE")
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "fas fa-circle nav-icon" }),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("Level 1")])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item has-treeview" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "nav-icon fas fa-circle" }),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                            Level 1\n                            "
+                      ),
+                      _c("i", { staticClass: "right fas fa-angle-left" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("ul", { staticClass: "nav nav-treeview" }, [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        { staticClass: "nav-link", attrs: { href: "#" } },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Level 2")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item has-treeview" }, [
+                      _c(
+                        "a",
+                        { staticClass: "nav-link", attrs: { href: "#" } },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "\n                                    Level 2\n                                    "
+                            ),
+                            _c("i", { staticClass: "right fas fa-angle-left" })
                           ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "card-footer" }, [
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "nav nav-treeview" }, [
+                        _c("li", { staticClass: "nav-item" }, [
                           _c(
-                            "form",
-                            { attrs: { action: "#", method: "post" } },
+                            "a",
+                            { staticClass: "nav-link", attrs: { href: "#" } },
                             [
-                              _c("div", { staticClass: "input-group" }, [
-                                _c("input", {
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "text",
-                                    name: "message",
-                                    placeholder: "Type Message ..."
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  { staticClass: "input-group-append" },
-                                  [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-warning",
-                                        attrs: { type: "button" }
-                                      },
-                                      [_vm._v("Send")]
-                                    )
-                                  ]
-                                )
-                              ])
+                              _c("i", {
+                                staticClass: "far fa-dot-circle nav-icon"
+                              }),
+                              _vm._v(" "),
+                              _c("p", [_vm._v("Level 3")])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "nav-item" }, [
+                          _c(
+                            "a",
+                            { staticClass: "nav-link", attrs: { href: "#" } },
+                            [
+                              _c("i", {
+                                staticClass: "far fa-dot-circle nav-icon"
+                              }),
+                              _vm._v(" "),
+                              _c("p", [_vm._v("Level 3")])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "nav-item" }, [
+                          _c(
+                            "a",
+                            { staticClass: "nav-link", attrs: { href: "#" } },
+                            [
+                              _c("i", {
+                                staticClass: "far fa-dot-circle nav-icon"
+                              }),
+                              _vm._v(" "),
+                              _c("p", [_vm._v("Level 3")])
                             ]
                           )
                         ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "card" }, [
-                      _c("div", { staticClass: "card-header" }, [
-                        _c("h3", { staticClass: "card-title" }, [
-                          _vm._v("Latest Members")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "card-tools" }, [
-                          _c("span", { staticClass: "badge badge-danger" }, [
-                            _vm._v("8 New Members")
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-tool",
-                              attrs: {
-                                type: "button",
-                                "data-card-widget": "collapse"
-                              }
-                            },
-                            [_c("i", { staticClass: "fas fa-minus" })]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-tool",
-                              attrs: {
-                                type: "button",
-                                "data-card-widget": "remove"
-                              }
-                            },
-                            [_c("i", { staticClass: "fas fa-times" })]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "card-body p-0" }, [
-                        _c("ul", { staticClass: "users-list clearfix" }, [
-                          _c("li", [
-                            _c("img", {
-                              attrs: {
-                                src: "dist/img/user1-128x128.jpg",
-                                alt: "User Image"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "users-list-name",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Alexander Pierce")]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "users-list-date" }, [
-                              _vm._v("Today")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("img", {
-                              attrs: {
-                                src: "dist/img/user8-128x128.jpg",
-                                alt: "User Image"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "users-list-name",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Norman")]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "users-list-date" }, [
-                              _vm._v("Yesterday")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("img", {
-                              attrs: {
-                                src: "dist/img/user7-128x128.jpg",
-                                alt: "User Image"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "users-list-name",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Jane")]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "users-list-date" }, [
-                              _vm._v("12 Jan")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("img", {
-                              attrs: {
-                                src: "dist/img/user6-128x128.jpg",
-                                alt: "User Image"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "users-list-name",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("John")]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "users-list-date" }, [
-                              _vm._v("12 Jan")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("img", {
-                              attrs: {
-                                src: "dist/img/user2-160x160.jpg",
-                                alt: "User Image"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "users-list-name",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Alexander")]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "users-list-date" }, [
-                              _vm._v("13 Jan")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("img", {
-                              attrs: {
-                                src: "dist/img/user5-128x128.jpg",
-                                alt: "User Image"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "users-list-name",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Sarah")]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "users-list-date" }, [
-                              _vm._v("14 Jan")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("img", {
-                              attrs: {
-                                src: "dist/img/user4-128x128.jpg",
-                                alt: "User Image"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "users-list-name",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Nora")]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "users-list-date" }, [
-                              _vm._v("15 Jan")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("img", {
-                              attrs: {
-                                src: "dist/img/user3-128x128.jpg",
-                                alt: "User Image"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "users-list-name",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Nadia")]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "users-list-date" }, [
-                              _vm._v("15 Jan")
-                            ])
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "card-footer text-center" }, [
-                        _c("a", { attrs: { href: "javascript::" } }, [
-                          _vm._v("View All Users")
-                        ])
                       ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        { staticClass: "nav-link", attrs: { href: "#" } },
+                        [
+                          _c("i", { staticClass: "far fa-circle nav-icon" }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v("Level 2")])
+                        ]
+                      )
                     ])
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card" }, [
-                  _c("div", { staticClass: "card-header border-transparent" }, [
-                    _c("h3", { staticClass: "card-title" }, [
-                      _vm._v("Latest Orders")
-                    ]),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", { staticClass: "fas fa-circle nav-icon" }),
                     _vm._v(" "),
-                    _c("div", { staticClass: "card-tools" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-tool",
-                          attrs: {
-                            type: "button",
-                            "data-card-widget": "collapse"
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-minus" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-tool",
-                          attrs: {
-                            type: "button",
-                            "data-card-widget": "remove"
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-times" })]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-body p-0" }, [
-                    _c("div", { staticClass: "table-responsive" }, [
-                      _c("table", { staticClass: "table m-0" }, [
-                        _c("thead", [
-                          _c("tr", [
-                            _c("th", [_vm._v("Order ID")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v("Item")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v("Status")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v("Popularity")])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("tbody", [
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "pages/examples/invoice.html" }
-                                },
-                                [_vm._v("OR9842")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("Call of Duty IV")]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "span",
-                                { staticClass: "badge badge-success" },
-                                [_vm._v("Shipped")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "sparkbar",
-                                  attrs: {
-                                    "data-color": "#00a65a",
-                                    "data-height": "20"
-                                  }
-                                },
-                                [_vm._v("90,80,90,-70,61,-83,63")]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "pages/examples/invoice.html" }
-                                },
-                                [_vm._v("OR1848")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("Samsung Smart TV")]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "span",
-                                { staticClass: "badge badge-warning" },
-                                [_vm._v("Pending")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "sparkbar",
-                                  attrs: {
-                                    "data-color": "#f39c12",
-                                    "data-height": "20"
-                                  }
-                                },
-                                [_vm._v("90,80,-90,70,61,-83,68")]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "pages/examples/invoice.html" }
-                                },
-                                [_vm._v("OR7429")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("iPhone 6 Plus")]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "span",
-                                { staticClass: "badge badge-danger" },
-                                [_vm._v("Delivered")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "sparkbar",
-                                  attrs: {
-                                    "data-color": "#f56954",
-                                    "data-height": "20"
-                                  }
-                                },
-                                [_vm._v("90,-80,90,70,-61,83,63")]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "pages/examples/invoice.html" }
-                                },
-                                [_vm._v("OR7429")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("Samsung Smart TV")]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("span", { staticClass: "badge badge-info" }, [
-                                _vm._v("Processing")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "sparkbar",
-                                  attrs: {
-                                    "data-color": "#00c0ef",
-                                    "data-height": "20"
-                                  }
-                                },
-                                [_vm._v("90,80,-90,70,-61,83,63")]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "pages/examples/invoice.html" }
-                                },
-                                [_vm._v("OR1848")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("Samsung Smart TV")]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "span",
-                                { staticClass: "badge badge-warning" },
-                                [_vm._v("Pending")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "sparkbar",
-                                  attrs: {
-                                    "data-color": "#f39c12",
-                                    "data-height": "20"
-                                  }
-                                },
-                                [_vm._v("90,80,-90,70,61,-83,68")]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "pages/examples/invoice.html" }
-                                },
-                                [_vm._v("OR7429")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("iPhone 6 Plus")]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "span",
-                                { staticClass: "badge badge-danger" },
-                                [_vm._v("Delivered")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "sparkbar",
-                                  attrs: {
-                                    "data-color": "#f56954",
-                                    "data-height": "20"
-                                  }
-                                },
-                                [_vm._v("90,-80,90,70,-61,83,63")]
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "pages/examples/invoice.html" }
-                                },
-                                [_vm._v("OR9842")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v("Call of Duty IV")]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "span",
-                                { staticClass: "badge badge-success" },
-                                [_vm._v("Shipped")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "sparkbar",
-                                  attrs: {
-                                    "data-color": "#00a65a",
-                                    "data-height": "20"
-                                  }
-                                },
-                                [_vm._v("90,80,90,-70,61,-83,63")]
-                              )
-                            ])
-                          ])
-                        ])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer clearfix" }, [
+                    _c("p", [_vm._v("Level 1")])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-header" }, [_vm._v("LABELS")]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", {
+                      staticClass: "nav-icon far fa-circle text-danger"
+                    }),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text" }, [_vm._v("Important")])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", {
+                      staticClass: "nav-icon far fa-circle text-warning"
+                    }),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("Warning")])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _c("i", {
+                      staticClass: "nav-icon far fa-circle text-info"
+                    }),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("Informational")])
+                  ])
+                ])
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row mb-2" }, [
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h1", { staticClass: "m-0 text-dark" }, [_vm._v("Dashboard v2")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item active" }, [
+                _vm._v("Dashboard v2")
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12 col-sm-6 col-md-3" }, [
+        _c("div", { staticClass: "info-box" }, [
+          _c("span", { staticClass: "info-box-icon bg-info elevation-1" }, [
+            _c("i", { staticClass: "fas fa-cog" })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "info-box-content" }, [
+            _c("span", { staticClass: "info-box-text" }, [
+              _vm._v("CPU Traffic")
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "info-box-number" }, [
+              _vm._v(
+                "\n                                10\n                                "
+              ),
+              _c("small", [_vm._v("%")])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12 col-sm-6 col-md-3" }, [
+        _c("div", { staticClass: "info-box mb-3" }, [
+          _c("span", { staticClass: "info-box-icon bg-danger elevation-1" }, [
+            _c("i", { staticClass: "fas fa-thumbs-up" })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "info-box-content" }, [
+            _c("span", { staticClass: "info-box-text" }, [_vm._v("Likes")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "info-box-number" }, [_vm._v("41,410")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "clearfix hidden-md-up" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12 col-sm-6 col-md-3" }, [
+        _c("div", { staticClass: "info-box mb-3" }, [
+          _c("span", { staticClass: "info-box-icon bg-success elevation-1" }, [
+            _c("i", { staticClass: "fas fa-shopping-cart" })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "info-box-content" }, [
+            _c("span", { staticClass: "info-box-text" }, [_vm._v("Sales")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "info-box-number" }, [_vm._v("760")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12 col-sm-6 col-md-3" }, [
+        _c("div", { staticClass: "info-box mb-3" }, [
+          _c("span", { staticClass: "info-box-icon bg-warning elevation-1" }, [
+            _c("i", { staticClass: "fas fa-users" })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "info-box-content" }, [
+            _c("span", { staticClass: "info-box-text" }, [
+              _vm._v("New Members")
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "info-box-number" }, [_vm._v("2,000")])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _c("h5", { staticClass: "card-title" }, [
+              _vm._v("Monthly Recap Report")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-tools" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-tool",
+                  attrs: { type: "button", "data-card-widget": "collapse" }
+                },
+                [_c("i", { staticClass: "fas fa-minus" })]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "btn-group" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-tool dropdown-toggle",
+                    attrs: { type: "button", "data-toggle": "dropdown" }
+                  },
+                  [_c("i", { staticClass: "fas fa-wrench" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "dropdown-menu dropdown-menu-right",
+                    attrs: { role: "menu" }
+                  },
+                  [
                     _c(
                       "a",
-                      {
-                        staticClass: "btn btn-sm btn-info float-left",
-                        attrs: { href: "javascript:void(0)" }
-                      },
-                      [_vm._v("Place New Order")]
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("Action")]
                     ),
                     _vm._v(" "),
                     _c(
                       "a",
-                      {
-                        staticClass: "btn btn-sm btn-secondary float-right",
-                        attrs: { href: "javascript:void(0)" }
-                      },
-                      [_vm._v("View All Orders")]
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("Another action")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("Something else here")]
+                    ),
+                    _vm._v(" "),
+                    _c("a", { staticClass: "dropdown-divider" }),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("Separated link")]
                     )
-                  ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-tool",
+                  attrs: { type: "button", "data-card-widget": "remove" }
+                },
+                [_c("i", { staticClass: "fas fa-times" })]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-8" }, [
+                _c("p", { staticClass: "text-center" }, [
+                  _c("strong", [_vm._v("Sales: 1 Jan, 2014 - 30 Jul, 2014")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "chart" }, [
+                  _c("canvas", {
+                    staticStyle: { height: "180px" },
+                    attrs: { id: "salesChart", height: "180" }
+                  })
                 ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("div", { staticClass: "info-box mb-3 bg-warning" }, [
-                  _c("span", { staticClass: "info-box-icon" }, [
-                    _c("i", { staticClass: "fas fa-tag" })
+                _c("p", { staticClass: "text-center" }, [
+                  _c("strong", [_vm._v("Goal Completion")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "progress-group" }, [
+                  _vm._v(
+                    "\n                                        Add Products to Cart\n                                        "
+                  ),
+                  _c("span", { staticClass: "float-right" }, [
+                    _c("b", [_vm._v("160")]),
+                    _vm._v("/200")
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "info-box-content" }, [
-                    _c("span", { staticClass: "info-box-text" }, [
-                      _vm._v("Inventory")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "info-box-number" }, [
-                      _vm._v("5,200")
-                    ])
+                  _c("div", { staticClass: "progress progress-sm" }, [
+                    _c("div", {
+                      staticClass: "progress-bar bg-primary",
+                      staticStyle: { width: "80%" }
+                    })
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "info-box mb-3 bg-success" }, [
-                  _c("span", { staticClass: "info-box-icon" }, [
-                    _c("i", { staticClass: "far fa-heart" })
+                _c("div", { staticClass: "progress-group" }, [
+                  _vm._v(
+                    "\n                                        Complete Purchase\n                                        "
+                  ),
+                  _c("span", { staticClass: "float-right" }, [
+                    _c("b", [_vm._v("310")]),
+                    _vm._v("/400")
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "info-box-content" }, [
-                    _c("span", { staticClass: "info-box-text" }, [
-                      _vm._v("Mentions")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "info-box-number" }, [
-                      _vm._v("92,050")
-                    ])
+                  _c("div", { staticClass: "progress progress-sm" }, [
+                    _c("div", {
+                      staticClass: "progress-bar bg-danger",
+                      staticStyle: { width: "75%" }
+                    })
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "info-box mb-3 bg-danger" }, [
-                  _c("span", { staticClass: "info-box-icon" }, [
-                    _c("i", { staticClass: "fas fa-cloud-download-alt" })
+                _c("div", { staticClass: "progress-group" }, [
+                  _c("span", { staticClass: "progress-text" }, [
+                    _vm._v("Visit Premium Page")
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "info-box-content" }, [
-                    _c("span", { staticClass: "info-box-text" }, [
-                      _vm._v("Downloads")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "info-box-number" }, [
-                      _vm._v("114,381")
-                    ])
+                  _c("span", { staticClass: "float-right" }, [
+                    _c("b", [_vm._v("480")]),
+                    _vm._v("/800")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "progress progress-sm" }, [
+                    _c("div", {
+                      staticClass: "progress-bar bg-success",
+                      staticStyle: { width: "60%" }
+                    })
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "info-box mb-3 bg-info" }, [
-                  _c("span", { staticClass: "info-box-icon" }, [
-                    _c("i", { staticClass: "far fa-comment" })
+                _c("div", { staticClass: "progress-group" }, [
+                  _vm._v(
+                    "\n                                        Send Inquiries\n                                        "
+                  ),
+                  _c("span", { staticClass: "float-right" }, [
+                    _c("b", [_vm._v("250")]),
+                    _vm._v("/500")
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "info-box-content" }, [
-                    _c("span", { staticClass: "info-box-text" }, [
-                      _vm._v("Direct Messages")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "info-box-number" }, [
-                      _vm._v("163,921")
-                    ])
+                  _c("div", { staticClass: "progress progress-sm" }, [
+                    _c("div", {
+                      staticClass: "progress-bar bg-warning",
+                      staticStyle: { width: "50%" }
+                    })
                   ])
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-sm-3 col-6" }, [
+                _c("div", { staticClass: "description-block border-right" }, [
+                  _c(
+                    "span",
+                    { staticClass: "description-percentage text-success" },
+                    [
+                      _c("i", { staticClass: "fas fa-caret-up" }),
+                      _vm._v(" 17%")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "description-header" }, [
+                    _vm._v("$35,210.43")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "description-text" }, [
+                    _vm._v("TOTAL REVENUE")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3 col-6" }, [
+                _c("div", { staticClass: "description-block border-right" }, [
+                  _c(
+                    "span",
+                    { staticClass: "description-percentage text-warning" },
+                    [
+                      _c("i", { staticClass: "fas fa-caret-left" }),
+                      _vm._v(" 0%")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "description-header" }, [
+                    _vm._v("$10,390.90")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "description-text" }, [
+                    _vm._v("TOTAL COST")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3 col-6" }, [
+                _c("div", { staticClass: "description-block border-right" }, [
+                  _c(
+                    "span",
+                    { staticClass: "description-percentage text-success" },
+                    [
+                      _c("i", { staticClass: "fas fa-caret-up" }),
+                      _vm._v(" 20%")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "description-header" }, [
+                    _vm._v("$24,813.53")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "description-text" }, [
+                    _vm._v("TOTAL PROFIT")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-3 col-6" }, [
+                _c("div", { staticClass: "description-block" }, [
+                  _c(
+                    "span",
+                    { staticClass: "description-percentage text-danger" },
+                    [
+                      _c("i", { staticClass: "fas fa-caret-down" }),
+                      _vm._v(" 18%")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "description-header" }, [
+                    _vm._v("1200")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "description-text" }, [
+                    _vm._v("GOAL COMPLETIONS")
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _c("h3", { staticClass: "card-title" }, [_vm._v("US-Visitors Report")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-tools" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-tool",
+              attrs: { type: "button", "data-card-widget": "collapse" }
+            },
+            [_c("i", { staticClass: "fas fa-minus" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-tool",
+              attrs: { type: "button", "data-card-widget": "remove" }
+            },
+            [_c("i", { staticClass: "fas fa-times" })]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body p-0" }, [
+        _c("div", { staticClass: "d-md-flex" }, [
+          _c(
+            "div",
+            {
+              staticClass: "p-1 flex-fill",
+              staticStyle: { overflow: "hidden" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticStyle: { height: "325px", overflow: "hidden" },
+                  attrs: { id: "world-map-markers" }
+                },
+                [_c("div", { staticClass: "map" })]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-pane-right bg-success pt-2 pb-2 pl-4 pr-4" },
+            [
+              _c("div", { staticClass: "description-block mb-4" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "sparkbar pad",
+                    attrs: { "data-color": "#fff" }
+                  },
+                  [_vm._v("90,70,90,70,75,80,70")]
+                ),
+                _vm._v(" "),
+                _c("h5", { staticClass: "description-header" }, [
+                  _vm._v("8390")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card" }, [
-                  _c("div", { staticClass: "card-header" }, [
-                    _c("h3", { staticClass: "card-title" }, [
-                      _vm._v("Browser Usage")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-tools" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-tool",
-                          attrs: {
-                            type: "button",
-                            "data-card-widget": "collapse"
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-minus" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-tool",
-                          attrs: {
-                            type: "button",
-                            "data-card-widget": "remove"
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-times" })]
-                      )
-                    ])
+                _c("span", { staticClass: "description-text" }, [
+                  _vm._v("Visits")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "description-block mb-4" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "sparkbar pad",
+                    attrs: { "data-color": "#fff" }
+                  },
+                  [_vm._v("90,50,90,70,61,83,63")]
+                ),
+                _vm._v(" "),
+                _c("h5", { staticClass: "description-header" }, [
+                  _vm._v("30%")
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "description-text" }, [
+                  _vm._v("Referrals")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "description-block" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "sparkbar pad",
+                    attrs: { "data-color": "#fff" }
+                  },
+                  [_vm._v("90,50,90,70,61,83,63")]
+                ),
+                _vm._v(" "),
+                _c("h5", { staticClass: "description-header" }, [
+                  _vm._v("70%")
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "description-text" }, [
+                  _vm._v("Organic")
+                ])
+              ])
+            ]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "card direct-chat direct-chat-warning" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _c("h3", { staticClass: "card-title" }, [_vm._v("Direct Chat")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-tools" }, [
+              _c(
+                "span",
+                {
+                  staticClass: "badge badge-warning",
+                  attrs: { "data-toggle": "tooltip", title: "3 New Messages" }
+                },
+                [_vm._v("3")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-tool",
+                  attrs: { type: "button", "data-card-widget": "collapse" }
+                },
+                [_c("i", { staticClass: "fas fa-minus" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-tool",
+                  attrs: {
+                    type: "button",
+                    "data-toggle": "tooltip",
+                    title: "Contacts",
+                    "data-widget": "chat-pane-toggle"
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-comments" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-tool",
+                  attrs: { type: "button", "data-card-widget": "remove" }
+                },
+                [_c("i", { staticClass: "fas fa-times" })]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "direct-chat-messages" }, [
+              _c("div", { staticClass: "direct-chat-msg" }, [
+                _c("div", { staticClass: "direct-chat-infos clearfix" }, [
+                  _c("span", { staticClass: "direct-chat-name float-left" }, [
+                    _vm._v("Alexander Pierce")
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-8" }, [
-                        _c("div", { staticClass: "chart-responsive" }, [
-                          _c("canvas", {
-                            attrs: { id: "pieChart", height: "150" }
-                          })
-                        ])
+                  _c(
+                    "span",
+                    { staticClass: "direct-chat-timestamp float-right" },
+                    [_vm._v("23 Jan 2:00 pm")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "direct-chat-img",
+                  attrs: {
+                    src: "dist/img/user1-128x128.jpg",
+                    alt: "message user image"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "direct-chat-text" }, [
+                  _vm._v(
+                    "\n                                                Is this template really for free? That's unbelievable!\n                                            "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "direct-chat-msg right" }, [
+                _c("div", { staticClass: "direct-chat-infos clearfix" }, [
+                  _c("span", { staticClass: "direct-chat-name float-right" }, [
+                    _vm._v("Sarah Bullock")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    { staticClass: "direct-chat-timestamp float-left" },
+                    [_vm._v("23 Jan 2:05 pm")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "direct-chat-img",
+                  attrs: {
+                    src: "dist/img/user3-128x128.jpg",
+                    alt: "message user image"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "direct-chat-text" }, [
+                  _vm._v(
+                    "\n                                                You better believe it!\n                                            "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "direct-chat-msg" }, [
+                _c("div", { staticClass: "direct-chat-infos clearfix" }, [
+                  _c("span", { staticClass: "direct-chat-name float-left" }, [
+                    _vm._v("Alexander Pierce")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    { staticClass: "direct-chat-timestamp float-right" },
+                    [_vm._v("23 Jan 5:37 pm")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "direct-chat-img",
+                  attrs: {
+                    src: "dist/img/user1-128x128.jpg",
+                    alt: "message user image"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "direct-chat-text" }, [
+                  _vm._v(
+                    "\n                                                Working with AdminLTE on a great new app! Wanna join?\n                                            "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "direct-chat-msg right" }, [
+                _c("div", { staticClass: "direct-chat-infos clearfix" }, [
+                  _c("span", { staticClass: "direct-chat-name float-right" }, [
+                    _vm._v("Sarah Bullock")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    { staticClass: "direct-chat-timestamp float-left" },
+                    [_vm._v("23 Jan 6:10 pm")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "direct-chat-img",
+                  attrs: {
+                    src: "dist/img/user3-128x128.jpg",
+                    alt: "message user image"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "direct-chat-text" }, [
+                  _vm._v(
+                    "\n                                                I would love to.\n                                            "
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "direct-chat-contacts" }, [
+              _c("ul", { staticClass: "contacts-list" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _c("img", {
+                      staticClass: "contacts-list-img",
+                      attrs: { src: "dist/img/user1-128x128.jpg" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "contacts-list-info" }, [
+                      _c("span", { staticClass: "contacts-list-name" }, [
+                        _vm._v(
+                          "\n                                                            Count Dracula\n                                                            "
+                        ),
+                        _c(
+                          "small",
+                          { staticClass: "contacts-list-date float-right" },
+                          [_vm._v("2/28/2015")]
+                        )
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c("ul", { staticClass: "chart-legend clearfix" }, [
-                          _c("li", [
-                            _c("i", {
-                              staticClass: "far fa-circle text-danger"
-                            }),
-                            _vm._v(" Chrome")
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("i", {
-                              staticClass: "far fa-circle text-success"
-                            }),
-                            _vm._v(" IE")
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("i", {
-                              staticClass: "far fa-circle text-warning"
-                            }),
-                            _vm._v(" FireFox")
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("i", { staticClass: "far fa-circle text-info" }),
-                            _vm._v(" Safari")
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("i", {
-                              staticClass: "far fa-circle text-primary"
-                            }),
-                            _vm._v(" Opera")
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c("i", {
-                              staticClass: "far fa-circle text-secondary"
-                            }),
-                            _vm._v(" Navigator")
-                          ])
-                        ])
+                      _c("span", { staticClass: "contacts-list-msg" }, [
+                        _vm._v("How have you been? I was...")
                       ])
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer bg-white p-0" }, [
-                    _c("ul", { staticClass: "nav nav-pills flex-column" }, [
-                      _c("li", { staticClass: "nav-item" }, [
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _c("img", {
+                      staticClass: "contacts-list-img",
+                      attrs: { src: "dist/img/user7-128x128.jpg" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "contacts-list-info" }, [
+                      _c("span", { staticClass: "contacts-list-name" }, [
+                        _vm._v(
+                          "\n                                                            Sarah Doe\n                                                            "
+                        ),
                         _c(
-                          "a",
-                          { staticClass: "nav-link", attrs: { href: "#" } },
-                          [
-                            _vm._v(
-                              "\n                                        United States of America\n                                        "
-                            ),
-                            _c(
-                              "span",
-                              { staticClass: "float-right text-danger" },
-                              [
-                                _c("i", {
-                                  staticClass: "fas fa-arrow-down text-sm"
-                                }),
-                                _vm._v(
-                                  "\n                                            12%"
-                                )
-                              ]
-                            )
-                          ]
+                          "small",
+                          { staticClass: "contacts-list-date float-right" },
+                          [_vm._v("2/23/2015")]
                         )
                       ]),
                       _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          { staticClass: "nav-link", attrs: { href: "#" } },
-                          [
-                            _vm._v(
-                              "\n                                        India\n                                        "
-                            ),
-                            _c(
-                              "span",
-                              { staticClass: "float-right text-success" },
-                              [
-                                _c("i", {
-                                  staticClass: "fas fa-arrow-up text-sm"
-                                }),
-                                _vm._v(
-                                  " 4%\n                                        "
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          { staticClass: "nav-link", attrs: { href: "#" } },
-                          [
-                            _vm._v(
-                              "\n                                        China\n                                        "
-                            ),
-                            _c(
-                              "span",
-                              { staticClass: "float-right text-warning" },
-                              [
-                                _c("i", {
-                                  staticClass: "fas fa-arrow-left text-sm"
-                                }),
-                                _vm._v(
-                                  " 0%\n                                        "
-                                )
-                              ]
-                            )
-                          ]
-                        )
+                      _c("span", { staticClass: "contacts-list-msg" }, [
+                        _vm._v("I will be waiting for...")
                       ])
                     ])
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card" }, [
-                  _c("div", { staticClass: "card-header" }, [
-                    _c("h3", { staticClass: "card-title" }, [
-                      _vm._v("Recently Added Products")
-                    ]),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _c("img", {
+                      staticClass: "contacts-list-img",
+                      attrs: { src: "dist/img/user3-128x128.jpg" }
+                    }),
                     _vm._v(" "),
-                    _c("div", { staticClass: "card-tools" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-tool",
-                          attrs: {
-                            type: "button",
-                            "data-card-widget": "collapse"
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-minus" })]
-                      ),
+                    _c("div", { staticClass: "contacts-list-info" }, [
+                      _c("span", { staticClass: "contacts-list-name" }, [
+                        _vm._v(
+                          "\n                                                            Nadia Jolie\n                                                            "
+                        ),
+                        _c(
+                          "small",
+                          { staticClass: "contacts-list-date float-right" },
+                          [_vm._v("2/20/2015")]
+                        )
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-tool",
-                          attrs: {
-                            type: "button",
-                            "data-card-widget": "remove"
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-times" })]
-                      )
+                      _c("span", { staticClass: "contacts-list-msg" }, [
+                        _vm._v("I'll call you back at...")
+                      ])
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-body p-0" }, [
-                    _c(
-                      "ul",
-                      {
-                        staticClass:
-                          "products-list product-list-in-card pl-2 pr-2"
-                      },
-                      [
-                        _c("li", { staticClass: "item" }, [
-                          _c("div", { staticClass: "product-img" }, [
-                            _c("img", {
-                              staticClass: "img-size-50",
-                              attrs: {
-                                src: "dist/img/default-150x150.png",
-                                alt: "Product Image"
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "product-info" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "product-title",
-                                attrs: { href: "javascript:void(0)" }
-                              },
-                              [
-                                _vm._v(
-                                  "Samsung TV\n                                            "
-                                ),
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "badge badge-warning float-right"
-                                  },
-                                  [_vm._v("$1800")]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "product-description" }, [
-                              _vm._v(
-                                '\n                                            Samsung 32" 1080p 60Hz LED Smart HDTV.\n                                        '
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "item" }, [
-                          _c("div", { staticClass: "product-img" }, [
-                            _c("img", {
-                              staticClass: "img-size-50",
-                              attrs: {
-                                src: "dist/img/default-150x150.png",
-                                alt: "Product Image"
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "product-info" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "product-title",
-                                attrs: { href: "javascript:void(0)" }
-                              },
-                              [
-                                _vm._v(
-                                  "Bicycle\n                                            "
-                                ),
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass: "badge badge-info float-right"
-                                  },
-                                  [_vm._v("$700")]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "product-description" }, [
-                              _vm._v(
-                                "\n                                            26\" Mongoose Dolomite Men's 7-speed, Navy Blue.\n                                        "
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "item" }, [
-                          _c("div", { staticClass: "product-img" }, [
-                            _c("img", {
-                              staticClass: "img-size-50",
-                              attrs: {
-                                src: "dist/img/default-150x150.png",
-                                alt: "Product Image"
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "product-info" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "product-title",
-                                attrs: { href: "javascript:void(0)" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                            Xbox One "
-                                ),
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "badge badge-danger float-right"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                            $350\n                                        "
-                                    )
-                                  ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "product-description" }, [
-                              _vm._v(
-                                "\n                                            Xbox One Console Bundle with Halo Master Chief Collection.\n                                        "
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "item" }, [
-                          _c("div", { staticClass: "product-img" }, [
-                            _c("img", {
-                              staticClass: "img-size-50",
-                              attrs: {
-                                src: "dist/img/default-150x150.png",
-                                alt: "Product Image"
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "product-info" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "product-title",
-                                attrs: { href: "javascript:void(0)" }
-                              },
-                              [
-                                _vm._v(
-                                  "PlayStation 4\n                                            "
-                                ),
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass:
-                                      "badge badge-success float-right"
-                                  },
-                                  [_vm._v("$399")]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "product-description" }, [
-                              _vm._v(
-                                "\n                                            PlayStation 4 500GB Console (PS4)\n                                        "
-                              )
-                            ])
-                          ])
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer text-center" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "uppercase",
-                        attrs: { href: "javascript:void(0)" }
-                      },
-                      [_vm._v("View All Products")]
-                    )
                   ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _c("img", {
+                      staticClass: "contacts-list-img",
+                      attrs: { src: "dist/img/user5-128x128.jpg" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "contacts-list-info" }, [
+                      _c("span", { staticClass: "contacts-list-name" }, [
+                        _vm._v(
+                          "\n                                                            Nora S. Vans\n                                                            "
+                        ),
+                        _c(
+                          "small",
+                          { staticClass: "contacts-list-date float-right" },
+                          [_vm._v("2/10/2015")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "contacts-list-msg" }, [
+                        _vm._v("Where is your new...")
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _c("img", {
+                      staticClass: "contacts-list-img",
+                      attrs: { src: "dist/img/user6-128x128.jpg" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "contacts-list-info" }, [
+                      _c("span", { staticClass: "contacts-list-name" }, [
+                        _vm._v(
+                          "\n                                                            John K.\n                                                            "
+                        ),
+                        _c(
+                          "small",
+                          { staticClass: "contacts-list-date float-right" },
+                          [_vm._v("1/27/2015")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "contacts-list-msg" }, [
+                        _vm._v("Can I take a look at...")
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _c("img", {
+                      staticClass: "contacts-list-img",
+                      attrs: { src: "dist/img/user8-128x128.jpg" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "contacts-list-info" }, [
+                      _c("span", { staticClass: "contacts-list-name" }, [
+                        _vm._v(
+                          "\n                                                            Kenneth M.\n                                                            "
+                        ),
+                        _c(
+                          "small",
+                          { staticClass: "contacts-list-date float-right" },
+                          [_vm._v("1/4/2015")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "contacts-list-msg" }, [
+                        _vm._v("Never mind I found...")
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer" }, [
+            _c("form", { attrs: { action: "#", method: "post" } }, [
+              _c("div", { staticClass: "input-group" }, [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "message",
+                    placeholder: "Type Message ..."
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "input-group-append" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-warning",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("Send")]
+                  )
                 ])
               ])
             ])
@@ -42554,21 +41340,660 @@ var staticRenderFns = [
         ])
       ]),
       _vm._v(" "),
-      _c("aside", { staticClass: "control-sidebar control-sidebar-dark" }),
-      _vm._v(" "),
-      _c("footer", { staticClass: "main-footer" }, [
-        _c("strong", [
-          _vm._v("Copyright © 2014-2019 "),
-          _c("a", { attrs: { href: "http://adminlte.io" } }, [
-            _vm._v("AdminLTE.io")
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _c("h3", { staticClass: "card-title" }, [_vm._v("Latest Members")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-tools" }, [
+              _c("span", { staticClass: "badge badge-danger" }, [
+                _vm._v("8 New Members")
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-tool",
+                  attrs: { type: "button", "data-card-widget": "collapse" }
+                },
+                [_c("i", { staticClass: "fas fa-minus" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-tool",
+                  attrs: { type: "button", "data-card-widget": "remove" }
+                },
+                [_c("i", { staticClass: "fas fa-times" })]
+              )
+            ])
           ]),
-          _vm._v(".")
-        ]),
-        _vm._v("\n    All rights reserved.\n    "),
-        _c("div", { staticClass: "float-right d-none d-sm-inline-block" }, [
-          _c("b", [_vm._v("Version")]),
-          _vm._v(" 3.0.2\n    ")
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body p-0" }, [
+            _c("ul", { staticClass: "users-list clearfix" }, [
+              _c("li", [
+                _c("img", {
+                  attrs: {
+                    src: "dist/img/user1-128x128.jpg",
+                    alt: "User Image"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "users-list-name", attrs: { href: "#" } },
+                  [_vm._v("Alexander Pierce")]
+                ),
+                _vm._v(" "),
+                _c("span", { staticClass: "users-list-date" }, [
+                  _vm._v("Today")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("img", {
+                  attrs: {
+                    src: "dist/img/user8-128x128.jpg",
+                    alt: "User Image"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "users-list-name", attrs: { href: "#" } },
+                  [_vm._v("Norman")]
+                ),
+                _vm._v(" "),
+                _c("span", { staticClass: "users-list-date" }, [
+                  _vm._v("Yesterday")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("img", {
+                  attrs: {
+                    src: "dist/img/user7-128x128.jpg",
+                    alt: "User Image"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "users-list-name", attrs: { href: "#" } },
+                  [_vm._v("Jane")]
+                ),
+                _vm._v(" "),
+                _c("span", { staticClass: "users-list-date" }, [
+                  _vm._v("12 Jan")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("img", {
+                  attrs: {
+                    src: "dist/img/user6-128x128.jpg",
+                    alt: "User Image"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "users-list-name", attrs: { href: "#" } },
+                  [_vm._v("John")]
+                ),
+                _vm._v(" "),
+                _c("span", { staticClass: "users-list-date" }, [
+                  _vm._v("12 Jan")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("img", {
+                  attrs: {
+                    src: "dist/img/user2-160x160.jpg",
+                    alt: "User Image"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "users-list-name", attrs: { href: "#" } },
+                  [_vm._v("Alexander")]
+                ),
+                _vm._v(" "),
+                _c("span", { staticClass: "users-list-date" }, [
+                  _vm._v("13 Jan")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("img", {
+                  attrs: {
+                    src: "dist/img/user5-128x128.jpg",
+                    alt: "User Image"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "users-list-name", attrs: { href: "#" } },
+                  [_vm._v("Sarah")]
+                ),
+                _vm._v(" "),
+                _c("span", { staticClass: "users-list-date" }, [
+                  _vm._v("14 Jan")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("img", {
+                  attrs: {
+                    src: "dist/img/user4-128x128.jpg",
+                    alt: "User Image"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "users-list-name", attrs: { href: "#" } },
+                  [_vm._v("Nora")]
+                ),
+                _vm._v(" "),
+                _c("span", { staticClass: "users-list-date" }, [
+                  _vm._v("15 Jan")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("img", {
+                  attrs: {
+                    src: "dist/img/user3-128x128.jpg",
+                    alt: "User Image"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "users-list-name", attrs: { href: "#" } },
+                  [_vm._v("Nadia")]
+                ),
+                _vm._v(" "),
+                _c("span", { staticClass: "users-list-date" }, [
+                  _vm._v("15 Jan")
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer text-center" }, [
+            _c("a", { attrs: { href: "javascript::" } }, [
+              _vm._v("View All Users")
+            ])
+          ])
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header border-transparent" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Latest Orders")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-tool",
+            attrs: { type: "button", "data-card-widget": "collapse" }
+          },
+          [_c("i", { staticClass: "fas fa-minus" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-tool",
+            attrs: { type: "button", "data-card-widget": "remove" }
+          },
+          [_c("i", { staticClass: "fas fa-times" })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Order ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Title")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Popularity")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("a", { attrs: { href: "pages/examples/invoice.html" } }, [
+        _vm._v("OR9842")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("span", { staticClass: "badge badge-success" }, [_vm._v("Shipped")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "div",
+        {
+          staticClass: "sparkbar",
+          attrs: { "data-color": "#00a65a", "data-height": "20" }
+        },
+        [_vm._v("90,80,90,-70,61,-83,63")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "info-box mb-3 bg-warning" }, [
+        _c("span", { staticClass: "info-box-icon" }, [
+          _c("i", { staticClass: "fas fa-tag" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "info-box-content" }, [
+          _c("span", { staticClass: "info-box-text" }, [_vm._v("Inventory")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "info-box-number" }, [_vm._v("5,200")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "info-box mb-3 bg-success" }, [
+        _c("span", { staticClass: "info-box-icon" }, [
+          _c("i", { staticClass: "far fa-heart" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "info-box-content" }, [
+          _c("span", { staticClass: "info-box-text" }, [_vm._v("Mentions")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "info-box-number" }, [_vm._v("92,050")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "info-box mb-3 bg-danger" }, [
+        _c("span", { staticClass: "info-box-icon" }, [
+          _c("i", { staticClass: "fas fa-cloud-download-alt" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "info-box-content" }, [
+          _c("span", { staticClass: "info-box-text" }, [_vm._v("Downloads")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "info-box-number" }, [_vm._v("114,381")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "info-box mb-3 bg-info" }, [
+        _c("span", { staticClass: "info-box-icon" }, [
+          _c("i", { staticClass: "far fa-comment" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "info-box-content" }, [
+          _c("span", { staticClass: "info-box-text" }, [
+            _vm._v("Direct Messages")
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "info-box-number" }, [_vm._v("163,921")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _c("h3", { staticClass: "card-title" }, [_vm._v("Browser Usage")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-tools" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-tool",
+                attrs: { type: "button", "data-card-widget": "collapse" }
+              },
+              [_c("i", { staticClass: "fas fa-minus" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-tool",
+                attrs: { type: "button", "data-card-widget": "remove" }
+              },
+              [_c("i", { staticClass: "fas fa-times" })]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-8" }, [
+              _c("div", { staticClass: "chart-responsive" }, [
+                _c("canvas", { attrs: { id: "pieChart", height: "150" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" }, [
+              _c("ul", { staticClass: "chart-legend clearfix" }, [
+                _c("li", [
+                  _c("i", { staticClass: "far fa-circle text-danger" }),
+                  _vm._v(" Chrome")
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("i", { staticClass: "far fa-circle text-success" }),
+                  _vm._v(" IE")
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("i", { staticClass: "far fa-circle text-warning" }),
+                  _vm._v(" FireFox")
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("i", { staticClass: "far fa-circle text-info" }),
+                  _vm._v(" Safari")
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("i", { staticClass: "far fa-circle text-primary" }),
+                  _vm._v(" Opera")
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("i", { staticClass: "far fa-circle text-secondary" }),
+                  _vm._v(" Navigator")
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer bg-white p-0" }, [
+          _c("ul", { staticClass: "nav nav-pills flex-column" }, [
+            _c("li", { staticClass: "nav-item" }, [
+              _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                _vm._v(
+                  "\n                                        United States of America\n                                        "
+                ),
+                _c("span", { staticClass: "float-right text-danger" }, [
+                  _c("i", { staticClass: "fas fa-arrow-down text-sm" }),
+                  _vm._v("\n                                            12%")
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-item" }, [
+              _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                _vm._v(
+                  "\n                                        India\n                                        "
+                ),
+                _c("span", { staticClass: "float-right text-success" }, [
+                  _c("i", { staticClass: "fas fa-arrow-up text-sm" }),
+                  _vm._v(" 4%\n                                        ")
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-item" }, [
+              _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                _vm._v(
+                  "\n                                        China\n                                        "
+                ),
+                _c("span", { staticClass: "float-right text-warning" }, [
+                  _c("i", { staticClass: "fas fa-arrow-left text-sm" }),
+                  _vm._v(" 0%\n                                        ")
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _c("h3", { staticClass: "card-title" }, [
+            _vm._v("Recently Added Products")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-tools" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-tool",
+                attrs: { type: "button", "data-card-widget": "collapse" }
+              },
+              [_c("i", { staticClass: "fas fa-minus" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-tool",
+                attrs: { type: "button", "data-card-widget": "remove" }
+              },
+              [_c("i", { staticClass: "fas fa-times" })]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body p-0" }, [
+          _c(
+            "ul",
+            { staticClass: "products-list product-list-in-card pl-2 pr-2" },
+            [
+              _c("li", { staticClass: "item" }, [
+                _c("div", { staticClass: "product-img" }, [
+                  _c("img", {
+                    staticClass: "img-size-50",
+                    attrs: {
+                      src: "dist/img/default-150x150.png",
+                      alt: "Product Image"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "product-info" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "product-title",
+                      attrs: { href: "javascript:void(0)" }
+                    },
+                    [
+                      _vm._v(
+                        "Samsung TV\n                                            "
+                      ),
+                      _c(
+                        "span",
+                        { staticClass: "badge badge-warning float-right" },
+                        [_vm._v("$1800")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "product-description" }, [
+                    _vm._v(
+                      '\n                                            Samsung 32" 1080p 60Hz LED Smart HDTV.\n                                        '
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "item" }, [
+                _c("div", { staticClass: "product-img" }, [
+                  _c("img", {
+                    staticClass: "img-size-50",
+                    attrs: {
+                      src: "dist/img/default-150x150.png",
+                      alt: "Product Image"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "product-info" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "product-title",
+                      attrs: { href: "javascript:void(0)" }
+                    },
+                    [
+                      _vm._v(
+                        "Bicycle\n                                            "
+                      ),
+                      _c(
+                        "span",
+                        { staticClass: "badge badge-info float-right" },
+                        [_vm._v("$700")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "product-description" }, [
+                    _vm._v(
+                      "\n                                            26\" Mongoose Dolomite Men's 7-speed, Navy Blue.\n                                        "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "item" }, [
+                _c("div", { staticClass: "product-img" }, [
+                  _c("img", {
+                    staticClass: "img-size-50",
+                    attrs: {
+                      src: "dist/img/default-150x150.png",
+                      alt: "Product Image"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "product-info" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "product-title",
+                      attrs: { href: "javascript:void(0)" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                            Xbox One "
+                      ),
+                      _c(
+                        "span",
+                        { staticClass: "badge badge-danger float-right" },
+                        [
+                          _vm._v(
+                            "\n                                            $350\n                                        "
+                          )
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "product-description" }, [
+                    _vm._v(
+                      "\n                                            Xbox One Console Bundle with Halo Master Chief Collection.\n                                        "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "item" }, [
+                _c("div", { staticClass: "product-img" }, [
+                  _c("img", {
+                    staticClass: "img-size-50",
+                    attrs: {
+                      src: "dist/img/default-150x150.png",
+                      alt: "Product Image"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "product-info" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "product-title",
+                      attrs: { href: "javascript:void(0)" }
+                    },
+                    [
+                      _vm._v(
+                        "PlayStation 4\n                                            "
+                      ),
+                      _c(
+                        "span",
+                        { staticClass: "badge badge-success float-right" },
+                        [_vm._v("$399")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "product-description" }, [
+                    _vm._v(
+                      "\n                                            PlayStation 4 500GB Console (PS4)\n                                        "
+                    )
+                  ])
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer text-center" }, [
+          _c(
+            "a",
+            { staticClass: "uppercase", attrs: { href: "javascript:void(0)" } },
+            [_vm._v("View All Products")]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", { staticClass: "main-footer" }, [
+      _c("strong", [
+        _vm._v("Copyright © 2014-2019 "),
+        _c("a", { attrs: { href: "http://adminlte.io" } }, [
+          _vm._v("AdminLTE.io")
+        ]),
+        _vm._v(".")
+      ]),
+      _vm._v("\n    All rights reserved.\n    "),
+      _c("div", { staticClass: "float-right d-none d-sm-inline-block" }, [
+        _c("b", [_vm._v("Version")]),
+        _vm._v(" 3.0.2\n    ")
       ])
     ])
   }
