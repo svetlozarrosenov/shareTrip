@@ -20,7 +20,7 @@ class ActivitiesController extends Controller
 
         $activities = $activityTable->join('participants', 'activities.id', '=', 'participants.activity_id')
             ->join('users', 'users.id', '=', 'participants.user_id')
-            ->select('users.name', 'activities.title')
+            ->select('users.name', 'activities.title', 'activities.description')
             ->get()
             ->toArray();
 
@@ -42,8 +42,8 @@ class ActivitiesController extends Controller
         $participant = new \App\Participant();
 
         $activityId = $activity->insertGetId( [
-            'title' => 'john@example.com', 
-            'description' => '0',
+            'title' => $request['title'], 
+            'description' => $request['description'],
         ] );
 
         $participant->insert( [

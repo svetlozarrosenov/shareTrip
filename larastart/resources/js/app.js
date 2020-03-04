@@ -11,6 +11,7 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router';
 import routes from './routes';
 import App from './App.vue';
+import store from './state'
 
 Vue.use(VueRouter);
 
@@ -32,7 +33,10 @@ Vue.use(VueRouter);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+store.dispatch('getActivities');
+
 const app = new Vue({
+	store,
     el: '#app',
     components: {App},
     router: new VueRouter(routes)

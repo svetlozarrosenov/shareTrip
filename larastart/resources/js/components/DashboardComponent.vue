@@ -1250,19 +1250,19 @@
                                     <table class="table m-0">
                                         <thead>
                                         <tr>
-                                            <th>Order ID</th>
                                             <th>Title</th>
+                                            <th>Description</th>
                                             <th>Status</th>
-                                            <th>Popularity</th>
+                                            <th>Date</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr v-for="activity in activities">
-                                            <td><a href="pages/examples/invoice.html">OR9842</a></td>
+                                        <tr v-for="activity in this.$store.state.activities">
                                             <td>{{activity.title}}</td>
-                                            <td><span class="badge badge-success">Shipped</span></td>
+                                            <td>{{activity.description}}</td>
+                                            <td><span class="badge badge-success">Inflated</span></td>
                                             <td>
-                                                <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+                                                <div class="sparkbar" data-color="#00a65a" data-height="20">example date goes here</div>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -1272,7 +1272,11 @@
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
-                                <a @click.prevent="addActivity" class="btn btn-sm btn-info float-left">Add Activity</a>
+                                
+                                <a type="button" class="btn btn-sm btn-info float-left" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Activity</a>
+
+                                <ModalActivity></ModalActivity>
+
                                 <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
                             </div>
                             <!-- /.card-footer -->
@@ -1502,39 +1506,22 @@
 
 <script>
     import axios from 'axios';
+    import ModalActivity from './modals/ModalAddActivity.vue';
 
     export default {
         data () {
                 return {
-                activities: []
+               
             }
         },
         mounted() {
-            this.getActivities();
+
         },
         methods: {
-            addActivity: function() {
-                axios.post('activity', {
-                    firstName: 'Fred',
-                    lastName: 'Flintstone'
-                })
-                .then((response) => {
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            },
-            getActivities() {
-                axios.get('activity', {
-                })
-                .then((response) => {
-                    this.activities = response.data;
-                    console.log(this.activities);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            }
+            
+        },
+        components: {
+            ModalActivity
         }
     }
 </script>
