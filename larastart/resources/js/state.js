@@ -7,21 +7,21 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
 	strict: true,
 	state: {
-		activities: []
+		games: []
 	},
 	mutations: {
-		setActivities(state, payload){
-			this.state.activities = payload.activities;
+		setGames(state, payload){
+			this.state.games = payload.games;
 		},
 	},
 	actions: {
-		getActivities(state, payload) {
-            let promise = axios.get('activity', {
+		getGames(state, payload) {
+            let promise = axios.get('games', {
             })
             .then((response) => {
             	this.commit({
-					type: 'setActivities',
-					activities: response.data
+					type: 'setGames',
+					games: response.data
 				});
             })
             .catch(function (error) {

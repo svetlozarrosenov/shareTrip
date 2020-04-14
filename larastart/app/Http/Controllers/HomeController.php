@@ -24,22 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $currentUser = Auth::user();
 
-        $activity = new \App\Activity();
-
-        $participant = new \App\Participant();
-
-        $activityId = $activity->insertGetId( [
-            'title' => 'john@example.com', 
-            'description' => '0',
-        ] );
-
-        $participant->insert( [
-            'activity_id' => $activityId,
-            'user_id' => $currentUser->id
-        ] );
-
-        return view('home');
+        return view('welcome');
     }
 }

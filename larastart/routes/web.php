@@ -11,18 +11,17 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('welcome');
-});
+// Route::get('/dashboard', function () {
+//     return view('welcome');
+// });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::apiResources( [
-	'activity' => 'API\ActivitiesController'
+	'/games' => 'API\GamesController',
 ] );

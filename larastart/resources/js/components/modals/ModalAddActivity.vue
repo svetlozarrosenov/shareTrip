@@ -44,26 +44,27 @@
         },
         methods: {
             addActivity: function() {
-            var formData = new FormData();
-            formData.set('title', this.form.title);
-            formData.set('description', this.form.description);
+                console.log('here');
+                var formData = new FormData();
+                formData.set('title', this.form.title);
+                formData.set('description', this.form.description);
 
-            let promise = axios({
-                method: 'post',
-                url: 'activity',
-                data: formData
-                
-            })
-            .then(function (response) {
-                //handle success
-                console.log(response);
-            })
-            .catch(function (response) {
-                //handle error
-                console.log(response);
-            });
+                let promise = axios({
+                    method: 'post',
+                    url: 'activity',
+                    data: formData
+                    
+                })
+                .then(function (response) {
+                    //handle success
+                    console.log(response);
+                })
+                .catch(function (response) {
+                    //handle error
+                    console.log(response);
+                });
 
-            return promise;
+                return promise;
             }
         },
     }

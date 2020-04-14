@@ -5,9 +5,11 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Game;
 
 
-class ActivitiesController extends Controller
+
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +18,10 @@ class ActivitiesController extends Controller
      */
     public function index()
     {
-        $activityTable = new \App\Activity();
+        $games = Game::all();
 
-        $activities = $activityTable->join('participants', 'activities.id', '=', 'participants.activity_id')
-            ->join('users', 'users.id', '=', 'participants.user_id')
-            ->select('users.name', 'activities.title', 'activities.description')
-            ->get()
-            ->toArray();
 
-        return $activities;
+        return $games;
     }
 
     /**

@@ -33,7 +33,7 @@ Vue.use(VueRouter);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-store.dispatch('getActivities');
+store.dispatch('getGames');
 
 const app = new Vue({
 	store,
