@@ -160,7 +160,7 @@
                             <li class="nav-item">
                                 <a href="./index.html" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p><router-link to="/search-friends">Find More Friends</router-link></p>
+                                    <p>Dashboard v1</p>
                                 </a>
                             </li>
                             <li class="nav-item">

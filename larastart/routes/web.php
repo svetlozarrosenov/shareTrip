@@ -24,4 +24,5 @@ Route::get('/', function () {
 
 Route::apiResources( [
 	'/games' => 'API\GamesController',
+	'/friends' => 'API\FriendsController',
 ] );

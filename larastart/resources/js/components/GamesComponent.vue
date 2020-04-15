@@ -19,7 +19,6 @@
 
 <script>
     import axios from 'axios';
-    import ModalActivity from './modals/ModalAddActivity.vue';
 
     export default {
         data () {
@@ -34,8 +33,5 @@
         methods: {
             
         },
-        components: {
-            ModalActivity
-        }
     }
 </script>

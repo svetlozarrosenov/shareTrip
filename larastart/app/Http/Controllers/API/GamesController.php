@@ -12,7 +12,6 @@ class GamesController extends Controller
     {
         $games = Game::all();
 
-
         return $games;
     }
 }

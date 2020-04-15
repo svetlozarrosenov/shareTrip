@@ -34,6 +34,7 @@ Vue.use(VueRouter);
  */
 
 store.dispatch('getGames');
+store.dispatch('getFriends');
 
 const app = new Vue({
 	store,
