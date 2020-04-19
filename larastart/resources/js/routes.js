@@ -1,5 +1,6 @@
 import Dashboard from './components/DashboardComponent';
 import Friends from './components/FriendsComponent';
+import Profile from './components/ProfileComponent';
 
 export default {
 	routes: [
@@ -10,6 +11,10 @@ export default {
 		{
 			path: '/search-friends',
 			component: Friends
+		},
+		{
+			path: '/profile',
+			component: Profile
 		}
 	]
 };

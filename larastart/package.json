@@ -27,6 +27,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.12.0",
         "admin-lte": "^3.0.1",
+        "magnific-popup": "^1.1.0",
         "vuex": "^3.1.2"
     }
 }
