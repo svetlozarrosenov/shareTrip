@@ -9,7 +9,7 @@ const store = new Vuex.Store({
 	state: {
 		games: [],
 		firends: [],
-		currentUser: 'dsad',
+		currentUser: {},
 	},
 	mutations: {
 		setGames(state, payload){
@@ -59,7 +59,7 @@ const store = new Vuex.Store({
             .then((response) => {
             	this.commit({
 					type: 'setCurrentUser',
-					friends: response.data
+					currentUser: response.data.user
 				});
             })
             .catch(function (error) {

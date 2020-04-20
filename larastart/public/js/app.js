@@ -1962,6 +1962,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _GamesComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GamesComponent.vue */ "./resources/js/components/GamesComponent.vue");
 /* harmony import */ var _NavComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NavComponent.vue */ "./resources/js/components/NavComponent.vue");
 /* harmony import */ var _SidebarComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SidebarComponent.vue */ "./resources/js/components/SidebarComponent.vue");
+/* harmony import */ var _FriendsComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FriendsComponent.vue */ "./resources/js/components/FriendsComponent.vue");
 //
 //
 //
@@ -2664,6 +2665,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -2673,13 +2675,16 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    console.log('mounted');
+  },
   methods: {},
   components: {
     ModalActivity: _modals_ModalAddActivity_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     GamesComponent: _GamesComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     NavComponent: _NavComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    SidebarComponent: _SidebarComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    SidebarComponent: _SidebarComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    FriendsComponent: _FriendsComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 });
 
@@ -3092,149 +3097,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3261,8 +3123,6 @@ __webpack_require__.r(__webpack_exports__);
     uploadFile: function uploadFile() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.post['Content-Type'] = 'multipart/form-data';
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.put['Content-Type'] = 'multipart/form-data';
       this.file = this.$refs.file.files[0];
       this.formData.append('file', this.file);
       this.formData.append('test', 'dsadasd');
@@ -41508,7 +41368,7 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("div", { staticClass: "progress-group" }, [
                   _vm._v(
-                    "\n                                        Add Products to Cart\n                                        "
+                    "\n                                            Add Products to Cart\n                                            "
                   ),
                   _c("span", { staticClass: "float-right" }, [
                     _c("b", [_vm._v("160")]),
@@ -41525,7 +41385,7 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("div", { staticClass: "progress-group" }, [
                   _vm._v(
-                    "\n                                        Complete Purchase\n                                        "
+                    "\n                                            Complete Purchase\n                                            "
                   ),
                   _c("span", { staticClass: "float-right" }, [
                     _c("b", [_vm._v("310")]),
@@ -41560,7 +41420,7 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("div", { staticClass: "progress-group" }, [
                   _vm._v(
-                    "\n                                        Send Inquiries\n                                        "
+                    "\n                                            Send Inquiries\n                                            "
                   ),
                   _c("span", { staticClass: "float-right" }, [
                     _c("b", [_vm._v("250")]),
@@ -41862,7 +41722,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "direct-chat-text" }, [
                 _vm._v(
-                  "\n                                                Is this template really for free? That's unbelievable!\n                                            "
+                  "\n                                                    Is this template really for free? That's unbelievable!\n                                                "
                 )
               ])
             ]),
@@ -41890,7 +41750,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "direct-chat-text" }, [
                 _vm._v(
-                  "\n                                                You better believe it!\n                                            "
+                  "\n                                                    You better believe it!\n                                                "
                 )
               ])
             ]),
@@ -41918,7 +41778,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "direct-chat-text" }, [
                 _vm._v(
-                  "\n                                                Working with AdminLTE on a great new app! Wanna join?\n                                            "
+                  "\n                                                    Working with AdminLTE on a great new app! Wanna join?\n                                                "
                 )
               ])
             ]),
@@ -41946,7 +41806,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "direct-chat-text" }, [
                 _vm._v(
-                  "\n                                                I would love to.\n                                            "
+                  "\n                                                    I would love to.\n                                                "
                 )
               ])
             ])
@@ -41964,7 +41824,7 @@ var staticRenderFns = [
                   _c("div", { staticClass: "contacts-list-info" }, [
                     _c("span", { staticClass: "contacts-list-name" }, [
                       _vm._v(
-                        "\n                                                            Count Dracula\n                                                            "
+                        "\n                                                                Count Dracula\n                                                                "
                       ),
                       _c(
                         "small",
@@ -41990,7 +41850,7 @@ var staticRenderFns = [
                   _c("div", { staticClass: "contacts-list-info" }, [
                     _c("span", { staticClass: "contacts-list-name" }, [
                       _vm._v(
-                        "\n                                                            Sarah Doe\n                                                            "
+                        "\n                                                                Sarah Doe\n                                                                "
                       ),
                       _c(
                         "small",
@@ -42016,7 +41876,7 @@ var staticRenderFns = [
                   _c("div", { staticClass: "contacts-list-info" }, [
                     _c("span", { staticClass: "contacts-list-name" }, [
                       _vm._v(
-                        "\n                                                            Nadia Jolie\n                                                            "
+                        "\n                                                                Nadia Jolie\n                                                                "
                       ),
                       _c(
                         "small",
@@ -42042,7 +41902,7 @@ var staticRenderFns = [
                   _c("div", { staticClass: "contacts-list-info" }, [
                     _c("span", { staticClass: "contacts-list-name" }, [
                       _vm._v(
-                        "\n                                                            Nora S. Vans\n                                                            "
+                        "\n                                                                Nora S. Vans\n                                                                "
                       ),
                       _c(
                         "small",
@@ -42068,7 +41928,7 @@ var staticRenderFns = [
                   _c("div", { staticClass: "contacts-list-info" }, [
                     _c("span", { staticClass: "contacts-list-name" }, [
                       _vm._v(
-                        "\n                                                            John K.\n                                                            "
+                        "\n                                                                John K.\n                                                                "
                       ),
                       _c(
                         "small",
@@ -42094,7 +41954,7 @@ var staticRenderFns = [
                   _c("div", { staticClass: "contacts-list-info" }, [
                     _c("span", { staticClass: "contacts-list-name" }, [
                       _vm._v(
-                        "\n                                                            Kenneth M.\n                                                            "
+                        "\n                                                                Kenneth M.\n                                                                "
                       ),
                       _c(
                         "small",
@@ -42334,11 +42194,13 @@ var staticRenderFns = [
             _c("li", { staticClass: "nav-item" }, [
               _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
                 _vm._v(
-                  "\n                                        United States of America\n                                        "
+                  "\n                                            United States of America\n                                            "
                 ),
                 _c("span", { staticClass: "float-right text-danger" }, [
                   _c("i", { staticClass: "fas fa-arrow-down text-sm" }),
-                  _vm._v("\n                                            12%")
+                  _vm._v(
+                    "\n                                                12%"
+                  )
                 ])
               ])
             ]),
@@ -42346,11 +42208,11 @@ var staticRenderFns = [
             _c("li", { staticClass: "nav-item" }, [
               _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
                 _vm._v(
-                  "\n                                        India\n                                        "
+                  "\n                                            India\n                                            "
                 ),
                 _c("span", { staticClass: "float-right text-success" }, [
                   _c("i", { staticClass: "fas fa-arrow-up text-sm" }),
-                  _vm._v(" 4%\n                                        ")
+                  _vm._v(" 4%\n                                            ")
                 ])
               ])
             ]),
@@ -42358,11 +42220,11 @@ var staticRenderFns = [
             _c("li", { staticClass: "nav-item" }, [
               _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
                 _vm._v(
-                  "\n                                        China\n                                        "
+                  "\n                                            China\n                                            "
                 ),
                 _c("span", { staticClass: "float-right text-warning" }, [
                   _c("i", { staticClass: "fas fa-arrow-left text-sm" }),
-                  _vm._v(" 0%\n                                        ")
+                  _vm._v(" 0%\n                                            ")
                 ])
               ])
             ])
@@ -42422,7 +42284,7 @@ var staticRenderFns = [
                     },
                     [
                       _vm._v(
-                        "Samsung TV\n                                            "
+                        "Samsung TV\n                                                "
                       ),
                       _c(
                         "span",
@@ -42434,7 +42296,7 @@ var staticRenderFns = [
                   _vm._v(" "),
                   _c("span", { staticClass: "product-description" }, [
                     _vm._v(
-                      '\n                                            Samsung 32" 1080p 60Hz LED Smart HDTV.\n                                        '
+                      '\n                                                Samsung 32" 1080p 60Hz LED Smart HDTV.\n                                            '
                     )
                   ])
                 ])
@@ -42460,7 +42322,7 @@ var staticRenderFns = [
                     },
                     [
                       _vm._v(
-                        "Bicycle\n                                            "
+                        "Bicycle\n                                                "
                       ),
                       _c(
                         "span",
@@ -42472,7 +42334,7 @@ var staticRenderFns = [
                   _vm._v(" "),
                   _c("span", { staticClass: "product-description" }, [
                     _vm._v(
-                      "\n                                            26\" Mongoose Dolomite Men's 7-speed, Navy Blue.\n                                        "
+                      "\n                                                26\" Mongoose Dolomite Men's 7-speed, Navy Blue.\n                                            "
                     )
                   ])
                 ])
@@ -42498,14 +42360,14 @@ var staticRenderFns = [
                     },
                     [
                       _vm._v(
-                        "\n                                            Xbox One "
+                        "\n                                                Xbox One "
                       ),
                       _c(
                         "span",
                         { staticClass: "badge badge-danger float-right" },
                         [
                           _vm._v(
-                            "\n                                            $350\n                                        "
+                            "\n                                                $350\n                                            "
                           )
                         ]
                       )
@@ -42514,7 +42376,7 @@ var staticRenderFns = [
                   _vm._v(" "),
                   _c("span", { staticClass: "product-description" }, [
                     _vm._v(
-                      "\n                                            Xbox One Console Bundle with Halo Master Chief Collection.\n                                        "
+                      "\n                                                Xbox One Console Bundle with Halo Master Chief Collection.\n                                            "
                     )
                   ])
                 ])
@@ -42540,7 +42402,7 @@ var staticRenderFns = [
                     },
                     [
                       _vm._v(
-                        "PlayStation 4\n                                            "
+                        "PlayStation 4\n                                                "
                       ),
                       _c(
                         "span",
@@ -42552,7 +42414,7 @@ var staticRenderFns = [
                   _vm._v(" "),
                   _c("span", { staticClass: "product-description" }, [
                     _vm._v(
-                      "\n                                            PlayStation 4 500GB Console (PS4)\n                                        "
+                      "\n                                                PlayStation 4 500GB Console (PS4)\n                                            "
                     )
                   ])
                 ])
@@ -42583,10 +42445,10 @@ var staticRenderFns = [
         ]),
         _vm._v(".")
       ]),
-      _vm._v("\n    All rights reserved.\n    "),
+      _vm._v("\n        All rights reserved.\n        "),
       _c("div", { staticClass: "float-right d-none d-sm-inline-block" }, [
         _c("b", [_vm._v("Version")]),
-        _vm._v(" 3.0.2\n    ")
+        _vm._v(" 3.0.2\n        ")
       ])
     ])
   }
@@ -43158,7 +43020,8 @@ var render = function() {
                           staticClass:
                             "profile-user-img img-responsive img-circle",
                           attrs: {
-                            src: "storage/" + this.user.avatar,
+                            src:
+                              "storage/" + this.$store.state.currentUser.avatar,
                             alt: "User profile picture"
                           }
                         })
@@ -43166,23 +43029,19 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("h3", { staticClass: "profile-username text-center" }, [
-                      _vm._v("Nina Mcintire")
+                      _vm._v(_vm._s(this.$store.state.currentUser.name))
                     ]),
                     _vm._v(" "),
                     _c("p", { staticClass: "text-muted text-center" }, [
-                      _vm._v("Software Engineer")
+                      _vm._v(_vm._s(this.$store.state.currentUser.email))
                     ]),
                     _vm._v(" "),
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(1)
                   ])
-                ]),
-                _vm._v(" "),
-                _vm._m(3)
+                ])
               ]),
               _vm._v(" "),
-              _vm._m(4)
+              _vm._m(2)
             ])
           ])
         ]
@@ -43196,7 +43055,7 @@ var render = function() {
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-6 white-popup__content" }, [
                 _c("div", { staticClass: "box box-primary" }, [
-                  _vm._m(5),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c(
                     "form",
@@ -43259,44 +43118,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "content-header" }, [
-      _c("h1", [_vm._v("\n\t\t\tUser Profile\n\t\t  ")]),
-      _vm._v(" "),
-      _c("ol", { staticClass: "breadcrumb" }, [
-        _c("li", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-dashboard" }),
-            _vm._v(" Home")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Examples")])]),
-        _vm._v(" "),
-        _c("li", { staticClass: "active" }, [_vm._v("User profile")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "list-group list-group-unbordered" }, [
-      _c("li", { staticClass: "list-group-item" }, [
-        _c("b", [_vm._v("Followers")]),
-        _vm._v(" "),
-        _c("a", { staticClass: "pull-right" }, [_vm._v("1,322")])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "list-group-item" }, [
-        _c("b", [_vm._v("Following")]),
-        _vm._v(" "),
-        _c("a", { staticClass: "pull-right" }, [_vm._v("543")])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "list-group-item" }, [
-        _c("b", [_vm._v("Friends")]),
-        _vm._v(" "),
-        _c("a", { staticClass: "pull-right" }, [_vm._v("13,287")])
-      ])
+      _c("h1", [_vm._v("\n\t\t\tUser Profile\n\t\t  ")])
     ])
   },
   function() {
@@ -43308,78 +43130,6 @@ var staticRenderFns = [
       { staticClass: "btn btn-primary btn-block", attrs: { href: "#" } },
       [_c("b", [_vm._v("Follow")])]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box box-primary" }, [
-      _c("div", { staticClass: "box-header with-border" }, [
-        _c("h3", { staticClass: "box-title" }, [_vm._v("About Me")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "box-body" }, [
-        _c("strong", [
-          _c("i", { staticClass: "fa fa-book margin-r-5" }),
-          _vm._v(" Education")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-muted" }, [
-          _vm._v(
-            "\n\t\t\t\t\tB.S. in Computer Science from the University of Tennessee at Knoxville\n\t\t\t\t  "
-          )
-        ]),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c("strong", [
-          _c("i", { staticClass: "fa fa-map-marker margin-r-5" }),
-          _vm._v(" Location")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-muted" }, [_vm._v("Malibu, California")]),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c("strong", [
-          _c("i", { staticClass: "fa fa-pencil margin-r-5" }),
-          _vm._v(" Skills")
-        ]),
-        _vm._v(" "),
-        _c("p", [
-          _c("span", { staticClass: "label label-danger" }, [
-            _vm._v("UI Design")
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "label label-success" }, [
-            _vm._v("Coding")
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "label label-info" }, [
-            _vm._v("Javascript")
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "label label-warning" }, [_vm._v("PHP")]),
-          _vm._v(" "),
-          _c("span", { staticClass: "label label-primary" }, [
-            _vm._v("Node.js")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c("strong", [
-          _c("i", { staticClass: "fa fa-file-text-o margin-r-5" }),
-          _vm._v(" Notes")
-        ]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque."
-          )
-        ])
-      ])
-    ])
   },
   function() {
     var _vm = this
@@ -43490,140 +43240,6 @@ var staticRenderFns = [
                   staticClass: "form-control input-sm",
                   attrs: { type: "text", placeholder: "Type a comment" }
                 })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "post clearfix" }, [
-                _c("div", { staticClass: "user-block" }, [
-                  _c("span", { staticClass: "username" }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Sarah Ross")]),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "pull-right btn-box-tool",
-                        attrs: { href: "#" }
-                      },
-                      [_c("i", { staticClass: "fa fa-times" })]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "description" }, [
-                    _vm._v("Sent you a message - 3 days ago")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "\n\t\t\t\t\t\tLorem ipsum represents a long-held tradition for designers,\n\t\t\t\t\t\ttypographers and the like. Some people hate it and argue for\n\t\t\t\t\t\tits demise, but others ignore the hate as they create awesome\n\t\t\t\t\t\ttools to help create filler text for everyone from bacon lovers\n\t\t\t\t\t\tto Charlie Sheen fans.\n\t\t\t\t\t  "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("form", { staticClass: "form-horizontal" }, [
-                  _c("div", { staticClass: "form-group margin-bottom-none" }, [
-                    _c("div", { staticClass: "col-sm-9" }, [
-                      _c("input", {
-                        staticClass: "form-control input-sm",
-                        attrs: { placeholder: "Response" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-3" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass:
-                            "btn btn-danger pull-right btn-block btn-sm",
-                          attrs: { type: "submit" }
-                        },
-                        [_vm._v("Send")]
-                      )
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "post" }, [
-                _c("div", { staticClass: "user-block" }, [
-                  _c("span", { staticClass: "username" }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Adam Jones")]),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "pull-right btn-box-tool",
-                        attrs: { href: "#" }
-                      },
-                      [_c("i", { staticClass: "fa fa-times" })]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "description" }, [
-                    _vm._v("Posted 5 photos - 5 days ago")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row margin-bottom" }, [
-                  _c("div", { staticClass: "col-sm-6" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-6" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-sm-6" }, [_c("br")]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-6" }, [_c("br")])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("ul", { staticClass: "list-inline" }, [
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "link-black text-sm",
-                        attrs: { href: "#" }
-                      },
-                      [
-                        _c("i", { staticClass: "fa fa-share margin-r-5" }),
-                        _vm._v(" Share")
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "link-black text-sm",
-                        attrs: { href: "#" }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fa fa-thumbs-o-up margin-r-5"
-                        }),
-                        _vm._v(" Like")
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "pull-right" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "link-black text-sm",
-                        attrs: { href: "#" }
-                      },
-                      [
-                        _c("i", { staticClass: "fa fa-comments-o margin-r-5" }),
-                        _vm._v(" Comments\n\t\t\t\t\t\t\t(5)")
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control input-sm",
-                  attrs: { type: "text", placeholder: "Type a comment" }
-                })
               ])
             ]
           ),
@@ -43664,22 +43280,6 @@ var staticRenderFns = [
                     _c("a", { staticClass: "btn btn-danger btn-xs" }, [
                       _vm._v("Delete")
                     ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("i", { staticClass: "fa fa-user bg-aqua" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "timeline-item" }, [
-                  _c("span", { staticClass: "time" }, [
-                    _c("i", { staticClass: "fa fa-clock-o" }),
-                    _vm._v(" 5 mins ago")
-                  ]),
-                  _vm._v(" "),
-                  _c("h3", { staticClass: "timeline-header no-border" }, [
-                    _c("a", { attrs: { href: "#" } }, [_vm._v("Sarah Young")]),
-                    _vm._v(" accepted your friend request\n\t\t\t\t\t\t  ")
                   ])
                 ])
               ]),
@@ -43917,7 +43517,23 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "sidebar" }, [
-        _vm._m(1),
+        _c("div", { staticClass: "user-panel mt-3 pb-3 mb-3 d-flex" }, [
+          _c("div", { staticClass: "image" }, [
+            _c("img", {
+              staticClass: "img-circle elevation-2",
+              attrs: {
+                src: "storage/" + this.$store.state.currentUser.avatar,
+                alt: "User Image"
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "info" }, [
+            _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
+              _vm._v("Hello " + _vm._s(this.$store.state.currentUser.name))
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _c("nav", { staticClass: "mt-2" }, [
           _c(
@@ -43944,9 +43560,7 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c("p", [
-                        _vm._v(
-                          "\n                                Dashboard\n                                "
-                        ),
+                        _vm._v("\n\t\t\t\t\t\t\tDashboard\n\t\t\t\t\t\t\t"),
                         _c("i", { staticClass: "right fas fa-angle-left" })
                       ])
                     ]
@@ -43978,7 +43592,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _vm._m(2),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c(
                       "li",
@@ -44004,6 +43618,8 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
               _vm._m(3),
               _vm._v(" "),
               _vm._m(4),
@@ -44014,9 +43630,9 @@ var render = function() {
               _vm._v(" "),
               _vm._m(7),
               _vm._v(" "),
-              _vm._m(8),
-              _vm._v(" "),
               _c("li", { staticClass: "nav-header" }, [_vm._v("EXAMPLES")]),
+              _vm._v(" "),
+              _vm._m(8),
               _vm._v(" "),
               _vm._m(9),
               _vm._v(" "),
@@ -44026,31 +43642,29 @@ var render = function() {
               _vm._v(" "),
               _vm._m(12),
               _vm._v(" "),
-              _vm._m(13),
-              _vm._v(" "),
               _c("li", { staticClass: "nav-header" }, [
                 _vm._v("MISCELLANEOUS")
               ]),
               _vm._v(" "),
-              _vm._m(14),
+              _vm._m(13),
               _vm._v(" "),
               _c("li", { staticClass: "nav-header" }, [
                 _vm._v("MULTI LEVEL EXAMPLE")
               ]),
               _vm._v(" "),
+              _vm._m(14),
+              _vm._v(" "),
               _vm._m(15),
               _vm._v(" "),
               _vm._m(16),
               _vm._v(" "),
-              _vm._m(17),
-              _vm._v(" "),
               _c("li", { staticClass: "nav-header" }, [_vm._v("LABELS")]),
+              _vm._v(" "),
+              _vm._m(17),
               _vm._v(" "),
               _vm._m(18),
               _vm._v(" "),
-              _vm._m(19),
-              _vm._v(" "),
-              _vm._m(20)
+              _vm._m(19)
             ]
           )
         ])
@@ -44070,33 +43684,17 @@ var staticRenderFns = [
         _c("img", {
           staticClass: "brand-image img-circle elevation-3",
           staticStyle: { opacity: ".8" },
-          attrs: { src: "dist/img/AdminLTELogo.png", alt: "AdminLTE Logo" }
+          attrs: {
+            src: "storage/images/NIchGqoUIjH8oK6kDplOPpCFibf3R9dNTz9hY6WF.jpeg",
+            alt: "AdminLTE Logo"
+          }
         }),
         _vm._v(" "),
         _c("span", { staticClass: "brand-text font-weight-light" }, [
-          _vm._v("AdminLTE 3")
+          _vm._v("Pokerface")
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "user-panel mt-3 pb-3 mb-3 d-flex" }, [
-      _c("div", { staticClass: "image" }, [
-        _c("img", {
-          staticClass: "img-circle elevation-2",
-          attrs: { src: "dist/img/user2-160x160.jpg", alt: "User Image" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "info" }, [
-        _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
-          _vm._v("username here")
-        ])
-      ])
-    ])
   },
   function() {
     var _vm = this
@@ -44126,9 +43724,7 @@ var staticRenderFns = [
           _c("i", { staticClass: "nav-icon fas fa-th" }),
           _vm._v(" "),
           _c("p", [
-            _vm._v(
-              "\n                                Widgets\n                                "
-            ),
+            _vm._v("\n\t\t\t\t\t\t\tWidgets\n\t\t\t\t\t\t\t"),
             _c("span", { staticClass: "right badge badge-danger" }, [
               _vm._v("New")
             ])
@@ -44146,9 +43742,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon fas fa-copy" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v(
-            "\n                                Layout Options\n                                "
-          ),
+          _vm._v("\n\t\t\t\t\t\t\tLayout Options\n\t\t\t\t\t\t\t"),
           _c("i", { staticClass: "fas fa-angle-left right" }),
           _vm._v(" "),
           _c("span", { staticClass: "badge badge-info right" }, [_vm._v("6")])
@@ -44272,9 +43866,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon fas fa-chart-pie" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v(
-            "\n                                Charts\n                                "
-          ),
+          _vm._v("\n\t\t\t\t\t\t\tCharts\n\t\t\t\t\t\t\t"),
           _c("i", { staticClass: "right fas fa-angle-left" })
         ])
       ]),
@@ -44336,9 +43928,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon fas fa-tree" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v(
-            "\n                                UI Elements\n                                "
-          ),
+          _vm._v("\n\t\t\t\t\t\t\tUI Elements\n\t\t\t\t\t\t\t"),
           _c("i", { staticClass: "fas fa-angle-left right" })
         ])
       ]),
@@ -44472,9 +44062,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon fas fa-edit" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v(
-            "\n                                Forms\n                                "
-          ),
+          _vm._v("\n\t\t\t\t\t\t\tForms\n\t\t\t\t\t\t\t"),
           _c("i", { staticClass: "fas fa-angle-left right" })
         ])
       ]),
@@ -44551,9 +44139,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon fas fa-table" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v(
-            "\n                                Tables\n                                "
-          ),
+          _vm._v("\n\t\t\t\t\t\t\tTables\n\t\t\t\t\t\t\t"),
           _c("i", { staticClass: "fas fa-angle-left right" })
         ])
       ]),
@@ -44618,9 +44204,7 @@ var staticRenderFns = [
           _c("i", { staticClass: "nav-icon fas fa-calendar-alt" }),
           _vm._v(" "),
           _c("p", [
-            _vm._v(
-              "\n                                Calendar\n                                "
-            ),
+            _vm._v("\n\t\t\t\t\t\t\tCalendar\n\t\t\t\t\t\t\t"),
             _c("span", { staticClass: "badge badge-info right" }, [_vm._v("2")])
           ])
         ]
@@ -44638,11 +44222,7 @@ var staticRenderFns = [
         [
           _c("i", { staticClass: "nav-icon far fa-image" }),
           _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "\n                                Gallery\n                            "
-            )
-          ])
+          _c("p", [_vm._v("\n\t\t\t\t\t\t\tGallery\n\t\t\t\t\t\t")])
         ]
       )
     ])
@@ -44656,9 +44236,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon far fa-envelope" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v(
-            "\n                                Mailbox\n                                "
-          ),
+          _vm._v("\n\t\t\t\t\t\t\tMailbox\n\t\t\t\t\t\t\t"),
           _c("i", { staticClass: "fas fa-angle-left right" })
         ])
       ]),
@@ -44720,9 +44298,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon fas fa-book" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v(
-            "\n                                Pages\n                                "
-          ),
+          _vm._v("\n\t\t\t\t\t\t\tPages\n\t\t\t\t\t\t\t"),
           _c("i", { staticClass: "fas fa-angle-left right" })
         ])
       ]),
@@ -44859,9 +44435,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon far fa-plus-square" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v(
-            "\n                                Extras\n                                "
-          ),
+          _vm._v("\n\t\t\t\t\t\t\tExtras\n\t\t\t\t\t\t\t"),
           _c("i", { staticClass: "fas fa-angle-left right" })
         ])
       ]),
@@ -45086,9 +44660,7 @@ var staticRenderFns = [
         _c("i", { staticClass: "nav-icon fas fa-circle" }),
         _vm._v(" "),
         _c("p", [
-          _vm._v(
-            "\n                                Level 1\n                                "
-          ),
+          _vm._v("\n\t\t\t\t\t\t\tLevel 1\n\t\t\t\t\t\t\t"),
           _c("i", { staticClass: "right fas fa-angle-left" })
         ])
       ]),
@@ -45107,9 +44679,7 @@ var staticRenderFns = [
             _c("i", { staticClass: "far fa-circle nav-icon" }),
             _vm._v(" "),
             _c("p", [
-              _vm._v(
-                "\n                                        Level 2\n                                        "
-              ),
+              _vm._v("\n\t\t\t\t\t\t\t\t\tLevel 2\n\t\t\t\t\t\t\t\t\t"),
               _c("i", { staticClass: "right fas fa-angle-left" })
             ])
           ]),
@@ -62214,7 +61784,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   state: {
     games: [],
     firends: [],
-    currentUser: 'dsad'
+    currentUser: {}
   },
   mutations: {
     setGames: function setGames(state, payload) {
@@ -62260,7 +61830,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
       var promise = axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('get-user/current', {}).then(function (response) {
         _this3.commit({
           type: 'setCurrentUser',
-          friends: response.data
+          currentUser: response.data.user
         });
       })["catch"](function (error) {
         console.log(error);
