@@ -28,7 +28,7 @@
 				<div class="box-body box-profile">
 
 				<a href="#test-popup" class="open-popup-link">
-					<img class="profile-user-img img-responsive img-circle" src="" alt="User profile picture">
+					<img class="profile-user-img img-responsive img-circle" :src="'storage/' + this.user.avatar" alt="User profile picture">
 				</a>
 
 				  <h3 class="profile-username text-center">Nina Mcintire</h3>
@@ -418,6 +418,7 @@
 					users: [],
 					file: '',
 					formData: new FormData(),
+					user: ''
 			}
 		},
 		mounted: function () {
@@ -438,11 +439,13 @@
 
 				this.formData.append('_method', 'PATCH');
 
-				console.log(this.formData.getAll('file'));
 				axios({
 					method: 'post',
 					url: 'update-user/image',
 					data: this.formData
+				}).then((response) =>{
+					this.user = response.data.user;
+					this.$store.dispatch('getCurrentUser');
 				});
 
 			}, 

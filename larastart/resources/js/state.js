@@ -9,7 +9,7 @@ const store = new Vuex.Store({
 	state: {
 		games: [],
 		firends: [],
-		currentUser: '',
+		currentUser: 'dsad',
 	},
 	mutations: {
 		setGames(state, payload){

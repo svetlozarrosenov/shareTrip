@@ -3246,7 +3246,8 @@ __webpack_require__.r(__webpack_exports__);
       userName: '',
       users: [],
       file: '',
-      formData: new FormData()
+      formData: new FormData(),
+      user: ''
     };
   },
   mounted: function mounted() {
@@ -3258,17 +3259,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     uploadFile: function uploadFile() {
+      var _this = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.post['Content-Type'] = 'multipart/form-data';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.put['Content-Type'] = 'multipart/form-data';
       this.file = this.$refs.file.files[0];
       this.formData.append('file', this.file);
       this.formData.append('test', 'dsadasd');
       this.formData.append('_method', 'PATCH');
-      console.log(this.formData.getAll('file'));
       axios__WEBPACK_IMPORTED_MODULE_0___default()({
         method: 'post',
         url: 'update-user/image',
         data: this.formData
+      }).then(function (response) {
+        _this.user = response.data.user;
+
+        _this.$store.dispatch('getCurrentUser');
       });
     }
   },
@@ -43127,7 +43133,60 @@ var render = function() {
       _vm._v(" "),
       _c("SidebarComponent"),
       _vm._v(" "),
-      _vm._m(0),
+      _c(
+        "div",
+        {
+          staticClass: "content-wrapper",
+          staticStyle: { "min-height": "1135.8px" }
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("section", { staticClass: "content" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-3" }, [
+                _c("div", { staticClass: "box box-primary" }, [
+                  _c("div", { staticClass: "box-body box-profile" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "open-popup-link",
+                        attrs: { href: "#test-popup" }
+                      },
+                      [
+                        _c("img", {
+                          staticClass:
+                            "profile-user-img img-responsive img-circle",
+                          attrs: {
+                            src: "storage/" + this.user.avatar,
+                            alt: "User profile picture"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "profile-username text-center" }, [
+                      _vm._v("Nina Mcintire")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-muted text-center" }, [
+                      _vm._v("Software Engineer")
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ]),
+              _vm._v(" "),
+              _vm._m(4)
+            ])
+          ])
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -43137,7 +43196,7 @@ var render = function() {
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-6 white-popup__content" }, [
                 _c("div", { staticClass: "box box-primary" }, [
-                  _vm._m(1),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c(
                     "form",
@@ -43199,752 +43258,627 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "content-wrapper",
-        staticStyle: { "min-height": "1135.8px" }
-      },
-      [
-        _c("section", { staticClass: "content-header" }, [
-          _c("h1", [_vm._v("\n\t\t\tUser Profile\n\t\t  ")]),
-          _vm._v(" "),
-          _c("ol", { staticClass: "breadcrumb" }, [
-            _c("li", [
-              _c("a", { attrs: { href: "#" } }, [
-                _c("i", { staticClass: "fa fa-dashboard" }),
-                _vm._v(" Home")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Examples")])]),
-            _vm._v(" "),
-            _c("li", { staticClass: "active" }, [_vm._v("User profile")])
+    return _c("section", { staticClass: "content-header" }, [
+      _c("h1", [_vm._v("\n\t\t\tUser Profile\n\t\t  ")]),
+      _vm._v(" "),
+      _c("ol", { staticClass: "breadcrumb" }, [
+        _c("li", [
+          _c("a", { attrs: { href: "#" } }, [
+            _c("i", { staticClass: "fa fa-dashboard" }),
+            _vm._v(" Home")
           ])
         ]),
         _vm._v(" "),
-        _c("section", { staticClass: "content" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-3" }, [
-              _c("div", { staticClass: "box box-primary" }, [
-                _c("div", { staticClass: "box-body box-profile" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "open-popup-link",
-                      attrs: { href: "#test-popup" }
-                    },
-                    [
-                      _c("img", {
-                        staticClass:
-                          "profile-user-img img-responsive img-circle",
-                        attrs: { src: "", alt: "User profile picture" }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("h3", { staticClass: "profile-username text-center" }, [
-                    _vm._v("Nina Mcintire")
+        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Examples")])]),
+        _vm._v(" "),
+        _c("li", { staticClass: "active" }, [_vm._v("User profile")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "list-group list-group-unbordered" }, [
+      _c("li", { staticClass: "list-group-item" }, [
+        _c("b", [_vm._v("Followers")]),
+        _vm._v(" "),
+        _c("a", { staticClass: "pull-right" }, [_vm._v("1,322")])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "list-group-item" }, [
+        _c("b", [_vm._v("Following")]),
+        _vm._v(" "),
+        _c("a", { staticClass: "pull-right" }, [_vm._v("543")])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "list-group-item" }, [
+        _c("b", [_vm._v("Friends")]),
+        _vm._v(" "),
+        _c("a", { staticClass: "pull-right" }, [_vm._v("13,287")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "btn btn-primary btn-block", attrs: { href: "#" } },
+      [_c("b", [_vm._v("Follow")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box box-primary" }, [
+      _c("div", { staticClass: "box-header with-border" }, [
+        _c("h3", { staticClass: "box-title" }, [_vm._v("About Me")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box-body" }, [
+        _c("strong", [
+          _c("i", { staticClass: "fa fa-book margin-r-5" }),
+          _vm._v(" Education")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-muted" }, [
+          _vm._v(
+            "\n\t\t\t\t\tB.S. in Computer Science from the University of Tennessee at Knoxville\n\t\t\t\t  "
+          )
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("strong", [
+          _c("i", { staticClass: "fa fa-map-marker margin-r-5" }),
+          _vm._v(" Location")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-muted" }, [_vm._v("Malibu, California")]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("strong", [
+          _c("i", { staticClass: "fa fa-pencil margin-r-5" }),
+          _vm._v(" Skills")
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _c("span", { staticClass: "label label-danger" }, [
+            _vm._v("UI Design")
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "label label-success" }, [
+            _vm._v("Coding")
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "label label-info" }, [
+            _vm._v("Javascript")
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "label label-warning" }, [_vm._v("PHP")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "label label-primary" }, [
+            _vm._v("Node.js")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("strong", [
+          _c("i", { staticClass: "fa fa-file-text-o margin-r-5" }),
+          _vm._v(" Notes")
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque."
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-9" }, [
+      _c("div", { staticClass: "nav-tabs-custom" }, [
+        _c("ul", { staticClass: "nav nav-tabs" }, [
+          _c("li", { staticClass: "active" }, [
+            _c("a", { attrs: { href: "#activity", "data-toggle": "tab" } }, [
+              _vm._v("Activity")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "#timeline", "data-toggle": "tab" } }, [
+              _vm._v("Timeline")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "#settings", "data-toggle": "tab" } }, [
+              _vm._v("Settings")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "tab-content" }, [
+          _c(
+            "div",
+            { staticClass: "active tab-pane", attrs: { id: "activity" } },
+            [
+              _c("div", { staticClass: "post" }, [
+                _c("div", { staticClass: "user-block" }, [
+                  _c("span", { staticClass: "username" }, [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v("Jonathan Burke Jr.")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "pull-right btn-box-tool",
+                        attrs: { href: "#" }
+                      },
+                      [_c("i", { staticClass: "fa fa-times" })]
+                    )
                   ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "text-muted text-center" }, [
-                    _vm._v("Software Engineer")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "ul",
-                    { staticClass: "list-group list-group-unbordered" },
-                    [
-                      _c("li", { staticClass: "list-group-item" }, [
-                        _c("b", [_vm._v("Followers")]),
-                        _vm._v(" "),
-                        _c("a", { staticClass: "pull-right" }, [
-                          _vm._v("1,322")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "list-group-item" }, [
-                        _c("b", [_vm._v("Following")]),
-                        _vm._v(" "),
-                        _c("a", { staticClass: "pull-right" }, [_vm._v("543")])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "list-group-item" }, [
-                        _c("b", [_vm._v("Friends")]),
-                        _vm._v(" "),
-                        _c("a", { staticClass: "pull-right" }, [
-                          _vm._v("13,287")
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-primary btn-block",
-                      attrs: { href: "#" }
-                    },
-                    [_c("b", [_vm._v("Follow")])]
+                  _c("span", { staticClass: "description" }, [
+                    _vm._v("Shared publicly - 7:30 PM today")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n\t\t\t\t\t\tLorem ipsum represents a long-held tradition for designers,\n\t\t\t\t\t\ttypographers and the like. Some people hate it and argue for\n\t\t\t\t\t\tits demise, but others ignore the hate as they create awesome\n\t\t\t\t\t\ttools to help create filler text for everyone from bacon lovers\n\t\t\t\t\t\tto Charlie Sheen fans.\n\t\t\t\t\t  "
                   )
+                ]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "list-inline" }, [
+                  _c("li", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "link-black text-sm",
+                        attrs: { href: "#" }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-share margin-r-5" }),
+                        _vm._v(" Share")
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "link-black text-sm",
+                        attrs: { href: "#" }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-thumbs-o-up margin-r-5"
+                        }),
+                        _vm._v(" Like")
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "pull-right" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "link-black text-sm",
+                        attrs: { href: "#" }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-comments-o margin-r-5" }),
+                        _vm._v(" Comments\n\t\t\t\t\t\t\t(5)")
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control input-sm",
+                  attrs: { type: "text", placeholder: "Type a comment" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "post clearfix" }, [
+                _c("div", { staticClass: "user-block" }, [
+                  _c("span", { staticClass: "username" }, [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Sarah Ross")]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "pull-right btn-box-tool",
+                        attrs: { href: "#" }
+                      },
+                      [_c("i", { staticClass: "fa fa-times" })]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "description" }, [
+                    _vm._v("Sent you a message - 3 days ago")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n\t\t\t\t\t\tLorem ipsum represents a long-held tradition for designers,\n\t\t\t\t\t\ttypographers and the like. Some people hate it and argue for\n\t\t\t\t\t\tits demise, but others ignore the hate as they create awesome\n\t\t\t\t\t\ttools to help create filler text for everyone from bacon lovers\n\t\t\t\t\t\tto Charlie Sheen fans.\n\t\t\t\t\t  "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("form", { staticClass: "form-horizontal" }, [
+                  _c("div", { staticClass: "form-group margin-bottom-none" }, [
+                    _c("div", { staticClass: "col-sm-9" }, [
+                      _c("input", {
+                        staticClass: "form-control input-sm",
+                        attrs: { placeholder: "Response" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-3" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn btn-danger pull-right btn-block btn-sm",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("Send")]
+                      )
+                    ])
+                  ])
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "box box-primary" }, [
-                _c("div", { staticClass: "box-header with-border" }, [
-                  _c("h3", { staticClass: "box-title" }, [_vm._v("About Me")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "box-body" }, [
-                  _c("strong", [
-                    _c("i", { staticClass: "fa fa-book margin-r-5" }),
-                    _vm._v(" Education")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted" }, [
-                    _vm._v(
-                      "\n\t\t\t\t\tB.S. in Computer Science from the University of Tennessee at Knoxville\n\t\t\t\t  "
+              _c("div", { staticClass: "post" }, [
+                _c("div", { staticClass: "user-block" }, [
+                  _c("span", { staticClass: "username" }, [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Adam Jones")]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "pull-right btn-box-tool",
+                        attrs: { href: "#" }
+                      },
+                      [_c("i", { staticClass: "fa fa-times" })]
                     )
                   ]),
                   _vm._v(" "),
-                  _c("hr"),
+                  _c("span", { staticClass: "description" }, [
+                    _vm._v("Posted 5 photos - 5 days ago")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row margin-bottom" }, [
+                  _c("div", { staticClass: "col-sm-6" }),
                   _vm._v(" "),
-                  _c("strong", [
-                    _c("i", { staticClass: "fa fa-map-marker margin-r-5" }),
-                    _vm._v(" Location")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted" }, [
-                    _vm._v("Malibu, California")
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("strong", [
-                    _c("i", { staticClass: "fa fa-pencil margin-r-5" }),
-                    _vm._v(" Skills")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _c("span", { staticClass: "label label-danger" }, [
-                      _vm._v("UI Design")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "label label-success" }, [
-                      _vm._v("Coding")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "label label-info" }, [
-                      _vm._v("Javascript")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "label label-warning" }, [
-                      _vm._v("PHP")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "label label-primary" }, [
-                      _vm._v("Node.js")
+                  _c("div", { staticClass: "col-sm-6" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-sm-6" }, [_c("br")]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-6" }, [_c("br")])
                     ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "list-inline" }, [
+                  _c("li", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "link-black text-sm",
+                        attrs: { href: "#" }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-share margin-r-5" }),
+                        _vm._v(" Share")
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("strong", [
-                    _c("i", { staticClass: "fa fa-file-text-o margin-r-5" }),
-                    _vm._v(" Notes")
+                  _c("li", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "link-black text-sm",
+                        attrs: { href: "#" }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-thumbs-o-up margin-r-5"
+                        }),
+                        _vm._v(" Like")
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
-                  _c("p", [
+                  _c("li", { staticClass: "pull-right" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "link-black text-sm",
+                        attrs: { href: "#" }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-comments-o margin-r-5" }),
+                        _vm._v(" Comments\n\t\t\t\t\t\t\t(5)")
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control input-sm",
+                  attrs: { type: "text", placeholder: "Type a comment" }
+                })
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "tab-pane", attrs: { id: "timeline" } }, [
+            _c("ul", { staticClass: "timeline timeline-inverse" }, [
+              _c("li", { staticClass: "time-label" }, [
+                _c("span", { staticClass: "bg-red" }, [
+                  _vm._v("\n\t\t\t\t\t\t\t  10 Feb. 2014\n\t\t\t\t\t\t\t")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("i", { staticClass: "fa fa-envelope bg-blue" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "timeline-item" }, [
+                  _c("span", { staticClass: "time" }, [
+                    _c("i", { staticClass: "fa fa-clock-o" }),
+                    _vm._v(" 12:05")
+                  ]),
+                  _vm._v(" "),
+                  _c("h3", { staticClass: "timeline-header" }, [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Support Team")]),
+                    _vm._v(" sent you an email")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "timeline-body" }, [
                     _vm._v(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque."
+                      "\n\t\t\t\t\t\t\tEtsy doostang zoodles disqus groupon greplin oooj voxy zoodles,\n\t\t\t\t\t\t\tweebly ning heekya handango imeem plugg dopplr jibjab, movity\n\t\t\t\t\t\t\tjajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle\n\t\t\t\t\t\t\tquora plaxo ideeli hulu weebly balihoo...\n\t\t\t\t\t\t  "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "timeline-footer" }, [
+                    _c("a", { staticClass: "btn btn-primary btn-xs" }, [
+                      _vm._v("Read more")
+                    ]),
+                    _vm._v(" "),
+                    _c("a", { staticClass: "btn btn-danger btn-xs" }, [
+                      _vm._v("Delete")
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("i", { staticClass: "fa fa-user bg-aqua" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "timeline-item" }, [
+                  _c("span", { staticClass: "time" }, [
+                    _c("i", { staticClass: "fa fa-clock-o" }),
+                    _vm._v(" 5 mins ago")
+                  ]),
+                  _vm._v(" "),
+                  _c("h3", { staticClass: "timeline-header no-border" }, [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Sarah Young")]),
+                    _vm._v(" accepted your friend request\n\t\t\t\t\t\t  ")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("i", { staticClass: "fa fa-comments bg-yellow" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "timeline-item" }, [
+                  _c("span", { staticClass: "time" }, [
+                    _c("i", { staticClass: "fa fa-clock-o" }),
+                    _vm._v(" 27 mins ago")
+                  ]),
+                  _vm._v(" "),
+                  _c("h3", { staticClass: "timeline-header" }, [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Jay White")]),
+                    _vm._v(" commented on your post")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "timeline-body" }, [
+                    _vm._v(
+                      "\n\t\t\t\t\t\t\tTake me to your leader!\n\t\t\t\t\t\t\tSwitzerland is small and neutral!\n\t\t\t\t\t\t\tWe are more like Germany, ambitious and misunderstood!\n\t\t\t\t\t\t  "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "timeline-footer" }, [
+                    _c(
+                      "a",
+                      { staticClass: "btn btn-warning btn-flat btn-xs" },
+                      [_vm._v("View comment")]
                     )
                   ])
                 ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-9" }, [
-              _c("div", { staticClass: "nav-tabs-custom" }, [
-                _c("ul", { staticClass: "nav nav-tabs" }, [
-                  _c("li", { staticClass: "active" }, [
-                    _c(
-                      "a",
-                      { attrs: { href: "#activity", "data-toggle": "tab" } },
-                      [_vm._v("Activity")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c(
-                      "a",
-                      { attrs: { href: "#timeline", "data-toggle": "tab" } },
-                      [_vm._v("Timeline")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c(
-                      "a",
-                      { attrs: { href: "#settings", "data-toggle": "tab" } },
-                      [_vm._v("Settings")]
-                    )
-                  ])
-                ]),
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "time-label" }, [
+                _c("span", { staticClass: "bg-green" }, [
+                  _vm._v("\n\t\t\t\t\t\t\t  3 Jan. 2014\n\t\t\t\t\t\t\t")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("i", { staticClass: "fa fa-camera bg-purple" }),
                 _vm._v(" "),
-                _c("div", { staticClass: "tab-content" }, [
+                _c("div", { staticClass: "timeline-item" }, [
+                  _c("span", { staticClass: "time" }, [
+                    _c("i", { staticClass: "fa fa-clock-o" }),
+                    _vm._v(" 2 days ago")
+                  ]),
+                  _vm._v(" "),
+                  _c("h3", { staticClass: "timeline-header" }, [
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("Mina Lee")]),
+                    _vm._v(" uploaded new photos")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "timeline-body" }, [
+                    _c("img", {
+                      staticClass: "margin",
+                      attrs: { src: "http://placehold.it/150x100", alt: "..." }
+                    }),
+                    _vm._v(" "),
+                    _c("img", {
+                      staticClass: "margin",
+                      attrs: { src: "http://placehold.it/150x100", alt: "..." }
+                    }),
+                    _vm._v(" "),
+                    _c("img", {
+                      staticClass: "margin",
+                      attrs: { src: "http://placehold.it/150x100", alt: "..." }
+                    }),
+                    _vm._v(" "),
+                    _c("img", {
+                      staticClass: "margin",
+                      attrs: { src: "http://placehold.it/150x100", alt: "..." }
+                    })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("i", { staticClass: "fa fa-clock-o bg-gray" })])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "tab-pane", attrs: { id: "settings" } }, [
+            _c("form", { staticClass: "form-horizontal" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-sm-2 control-label",
+                    attrs: { for: "inputName" }
+                  },
+                  [_vm._v("Name")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-10" }, [
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "email",
+                      id: "inputName",
+                      placeholder: "Name"
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-sm-2 control-label",
+                    attrs: { for: "inputEmail" }
+                  },
+                  [_vm._v("Email")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-10" }, [
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "email",
+                      id: "inputEmail",
+                      placeholder: "Email"
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-sm-2 control-label",
+                    attrs: { for: "inputExperience" }
+                  },
+                  [_vm._v("Experience")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-10" }, [
+                  _c("textarea", {
+                    staticClass: "form-control",
+                    attrs: { id: "inputExperience", placeholder: "Experience" }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-sm-2 control-label",
+                    attrs: { for: "inputSkills" }
+                  },
+                  [_vm._v("Skills")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-10" }, [
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "inputSkills",
+                      placeholder: "Skills"
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("div", { staticClass: "col-sm-offset-2 col-sm-10" }, [
+                  _c("div", { staticClass: "checkbox" }, [
+                    _c("label", [
+                      _c("input", { attrs: { type: "checkbox" } }),
+                      _vm._v(" I agree to the "),
+                      _c("a", { attrs: { href: "#" } }, [
+                        _vm._v("terms and conditions")
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("div", { staticClass: "col-sm-offset-2 col-sm-10" }, [
                   _c(
-                    "div",
+                    "button",
                     {
-                      staticClass: "active tab-pane",
-                      attrs: { id: "activity" }
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "submit" }
                     },
-                    [
-                      _c("div", { staticClass: "post" }, [
-                        _c("div", { staticClass: "user-block" }, [
-                          _c("span", { staticClass: "username" }, [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _vm._v("Jonathan Burke Jr.")
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "pull-right btn-box-tool",
-                                attrs: { href: "#" }
-                              },
-                              [_c("i", { staticClass: "fa fa-times" })]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "description" }, [
-                            _vm._v("Shared publicly - 7:30 PM today")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\n\t\t\t\t\t\tLorem ipsum represents a long-held tradition for designers,\n\t\t\t\t\t\ttypographers and the like. Some people hate it and argue for\n\t\t\t\t\t\tits demise, but others ignore the hate as they create awesome\n\t\t\t\t\t\ttools to help create filler text for everyone from bacon lovers\n\t\t\t\t\t\tto Charlie Sheen fans.\n\t\t\t\t\t  "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("ul", { staticClass: "list-inline" }, [
-                          _c("li", [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "link-black text-sm",
-                                attrs: { href: "#" }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "fa fa-share margin-r-5"
-                                }),
-                                _vm._v(" Share")
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "link-black text-sm",
-                                attrs: { href: "#" }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "fa fa-thumbs-o-up margin-r-5"
-                                }),
-                                _vm._v(" Like")
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("li", { staticClass: "pull-right" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "link-black text-sm",
-                                attrs: { href: "#" }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "fa fa-comments-o margin-r-5"
-                                }),
-                                _vm._v(" Comments\n\t\t\t\t\t\t\t(5)")
-                              ]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control input-sm",
-                          attrs: { type: "text", placeholder: "Type a comment" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "post clearfix" }, [
-                        _c("div", { staticClass: "user-block" }, [
-                          _c("span", { staticClass: "username" }, [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _vm._v("Sarah Ross")
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "pull-right btn-box-tool",
-                                attrs: { href: "#" }
-                              },
-                              [_c("i", { staticClass: "fa fa-times" })]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "description" }, [
-                            _vm._v("Sent you a message - 3 days ago")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "\n\t\t\t\t\t\tLorem ipsum represents a long-held tradition for designers,\n\t\t\t\t\t\ttypographers and the like. Some people hate it and argue for\n\t\t\t\t\t\tits demise, but others ignore the hate as they create awesome\n\t\t\t\t\t\ttools to help create filler text for everyone from bacon lovers\n\t\t\t\t\t\tto Charlie Sheen fans.\n\t\t\t\t\t  "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("form", { staticClass: "form-horizontal" }, [
-                          _c(
-                            "div",
-                            { staticClass: "form-group margin-bottom-none" },
-                            [
-                              _c("div", { staticClass: "col-sm-9" }, [
-                                _c("input", {
-                                  staticClass: "form-control input-sm",
-                                  attrs: { placeholder: "Response" }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-sm-3" }, [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-danger pull-right btn-block btn-sm",
-                                    attrs: { type: "submit" }
-                                  },
-                                  [_vm._v("Send")]
-                                )
-                              ])
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "post" }, [
-                        _c("div", { staticClass: "user-block" }, [
-                          _c("span", { staticClass: "username" }, [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _vm._v("Adam Jones")
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "pull-right btn-box-tool",
-                                attrs: { href: "#" }
-                              },
-                              [_c("i", { staticClass: "fa fa-times" })]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "description" }, [
-                            _vm._v("Posted 5 photos - 5 days ago")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row margin-bottom" }, [
-                          _c("div", { staticClass: "col-sm-6" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-6" }, [
-                            _c("div", { staticClass: "row" }, [
-                              _c("div", { staticClass: "col-sm-6" }, [
-                                _c("br")
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-sm-6" }, [_c("br")])
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("ul", { staticClass: "list-inline" }, [
-                          _c("li", [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "link-black text-sm",
-                                attrs: { href: "#" }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "fa fa-share margin-r-5"
-                                }),
-                                _vm._v(" Share")
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("li", [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "link-black text-sm",
-                                attrs: { href: "#" }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "fa fa-thumbs-o-up margin-r-5"
-                                }),
-                                _vm._v(" Like")
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("li", { staticClass: "pull-right" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "link-black text-sm",
-                                attrs: { href: "#" }
-                              },
-                              [
-                                _c("i", {
-                                  staticClass: "fa fa-comments-o margin-r-5"
-                                }),
-                                _vm._v(" Comments\n\t\t\t\t\t\t\t(5)")
-                              ]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control input-sm",
-                          attrs: { type: "text", placeholder: "Type a comment" }
-                        })
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "tab-pane", attrs: { id: "timeline" } },
-                    [
-                      _c("ul", { staticClass: "timeline timeline-inverse" }, [
-                        _c("li", { staticClass: "time-label" }, [
-                          _c("span", { staticClass: "bg-red" }, [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t\t  10 Feb. 2014\n\t\t\t\t\t\t\t"
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _c("i", { staticClass: "fa fa-envelope bg-blue" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "timeline-item" }, [
-                            _c("span", { staticClass: "time" }, [
-                              _c("i", { staticClass: "fa fa-clock-o" }),
-                              _vm._v(" 12:05")
-                            ]),
-                            _vm._v(" "),
-                            _c("h3", { staticClass: "timeline-header" }, [
-                              _c("a", { attrs: { href: "#" } }, [
-                                _vm._v("Support Team")
-                              ]),
-                              _vm._v(" sent you an email")
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "timeline-body" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t\t\tEtsy doostang zoodles disqus groupon greplin oooj voxy zoodles,\n\t\t\t\t\t\t\tweebly ning heekya handango imeem plugg dopplr jibjab, movity\n\t\t\t\t\t\t\tjajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle\n\t\t\t\t\t\t\tquora plaxo ideeli hulu weebly balihoo...\n\t\t\t\t\t\t  "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "timeline-footer" }, [
-                              _c(
-                                "a",
-                                { staticClass: "btn btn-primary btn-xs" },
-                                [_vm._v("Read more")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                { staticClass: "btn btn-danger btn-xs" },
-                                [_vm._v("Delete")]
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _c("i", { staticClass: "fa fa-user bg-aqua" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "timeline-item" }, [
-                            _c("span", { staticClass: "time" }, [
-                              _c("i", { staticClass: "fa fa-clock-o" }),
-                              _vm._v(" 5 mins ago")
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "h3",
-                              { staticClass: "timeline-header no-border" },
-                              [
-                                _c("a", { attrs: { href: "#" } }, [
-                                  _vm._v("Sarah Young")
-                                ]),
-                                _vm._v(
-                                  " accepted your friend request\n\t\t\t\t\t\t  "
-                                )
-                              ]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _c("i", { staticClass: "fa fa-comments bg-yellow" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "timeline-item" }, [
-                            _c("span", { staticClass: "time" }, [
-                              _c("i", { staticClass: "fa fa-clock-o" }),
-                              _vm._v(" 27 mins ago")
-                            ]),
-                            _vm._v(" "),
-                            _c("h3", { staticClass: "timeline-header" }, [
-                              _c("a", { attrs: { href: "#" } }, [
-                                _vm._v("Jay White")
-                              ]),
-                              _vm._v(" commented on your post")
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "timeline-body" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t\t\tTake me to your leader!\n\t\t\t\t\t\t\tSwitzerland is small and neutral!\n\t\t\t\t\t\t\tWe are more like Germany, ambitious and misunderstood!\n\t\t\t\t\t\t  "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "timeline-footer" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "btn btn-warning btn-flat btn-xs"
-                                },
-                                [_vm._v("View comment")]
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "time-label" }, [
-                          _c("span", { staticClass: "bg-green" }, [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t\t  3 Jan. 2014\n\t\t\t\t\t\t\t"
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _c("i", { staticClass: "fa fa-camera bg-purple" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "timeline-item" }, [
-                            _c("span", { staticClass: "time" }, [
-                              _c("i", { staticClass: "fa fa-clock-o" }),
-                              _vm._v(" 2 days ago")
-                            ]),
-                            _vm._v(" "),
-                            _c("h3", { staticClass: "timeline-header" }, [
-                              _c("a", { attrs: { href: "#" } }, [
-                                _vm._v("Mina Lee")
-                              ]),
-                              _vm._v(" uploaded new photos")
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "timeline-body" }, [
-                              _c("img", {
-                                staticClass: "margin",
-                                attrs: {
-                                  src: "http://placehold.it/150x100",
-                                  alt: "..."
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("img", {
-                                staticClass: "margin",
-                                attrs: {
-                                  src: "http://placehold.it/150x100",
-                                  alt: "..."
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("img", {
-                                staticClass: "margin",
-                                attrs: {
-                                  src: "http://placehold.it/150x100",
-                                  alt: "..."
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("img", {
-                                staticClass: "margin",
-                                attrs: {
-                                  src: "http://placehold.it/150x100",
-                                  alt: "..."
-                                }
-                              })
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _c("i", { staticClass: "fa fa-clock-o bg-gray" })
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "tab-pane", attrs: { id: "settings" } },
-                    [
-                      _c("form", { staticClass: "form-horizontal" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "col-sm-2 control-label",
-                              attrs: { for: "inputName" }
-                            },
-                            [_vm._v("Name")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-10" }, [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "email",
-                                id: "inputName",
-                                placeholder: "Name"
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "col-sm-2 control-label",
-                              attrs: { for: "inputEmail" }
-                            },
-                            [_vm._v("Email")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-10" }, [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "email",
-                                id: "inputEmail",
-                                placeholder: "Email"
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "col-sm-2 control-label",
-                              attrs: { for: "inputExperience" }
-                            },
-                            [_vm._v("Experience")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-10" }, [
-                            _c("textarea", {
-                              staticClass: "form-control",
-                              attrs: {
-                                id: "inputExperience",
-                                placeholder: "Experience"
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "col-sm-2 control-label",
-                              attrs: { for: "inputSkills" }
-                            },
-                            [_vm._v("Skills")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-10" }, [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                id: "inputSkills",
-                                placeholder: "Skills"
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "div",
-                            { staticClass: "col-sm-offset-2 col-sm-10" },
-                            [
-                              _c("div", { staticClass: "checkbox" }, [
-                                _c("label", [
-                                  _c("input", { attrs: { type: "checkbox" } }),
-                                  _vm._v(" I agree to the "),
-                                  _c("a", { attrs: { href: "#" } }, [
-                                    _vm._v("terms and conditions")
-                                  ])
-                                ])
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "div",
-                            { staticClass: "col-sm-offset-2 col-sm-10" },
-                            [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-danger",
-                                  attrs: { type: "submit" }
-                                },
-                                [_vm._v("Submit")]
-                              )
-                            ]
-                          )
-                        ])
-                      ])
-                    ]
+                    [_vm._v("Submit")]
                   )
                 ])
               ])
             ])
           ])
         ])
-      ]
-    )
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -62280,7 +62214,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   state: {
     games: [],
     firends: [],
-    currentUser: ''
+    currentUser: 'dsad'
   },
   mutations: {
     setGames: function setGames(state, payload) {

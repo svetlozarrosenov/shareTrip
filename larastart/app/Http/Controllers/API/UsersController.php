@@ -11,7 +11,7 @@ class UsersController extends Controller
     public function index() {
     	$users = User::all();
 
-    	return $users;
+    	return response()->json( [ 'users' => $users ] );
     }
 
     public function update(Request $request, $id) {
@@ -25,7 +25,9 @@ class UsersController extends Controller
     		'avatar' => $request->file->store('images', 'public')
     	]);
 
-    	return $user;
+    	$user = auth()->user();
+
+    	return response()->json( [ 'user' => $user ] );
     }
 
     public function show($user)
@@ -34,6 +36,6 @@ class UsersController extends Controller
     		$user = auth()->user();
     	}
     	
-    	return $user;
+    	return response()->json( [ 'user' => $user ] );
     }
 }
