@@ -9,6 +9,7 @@ const store = new Vuex.Store({
 	state: {
 		games: [],
 		firends: [],
+		currentUser: '',
 	},
 	mutations: {
 		setGames(state, payload){
@@ -16,6 +17,9 @@ const store = new Vuex.Store({
 		},
 		setFriends(state, payload){
 			this.state.friends = payload.friends;
+		},
+		setCurrentUser(state, payload){
+			this.state.currentUser = payload.currentUser;
 		},
 	},
 	actions: {
@@ -40,6 +44,21 @@ const store = new Vuex.Store({
             .then((response) => {
             	this.commit({
 					type: 'setFriends',
+					friends: response.data
+				});
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+            return promise;
+        },
+        getCurrentUser(state, payload) {
+        	let promise = axios.get('get-user/current', {
+            })
+            .then((response) => {
+            	this.commit({
+					type: 'setCurrentUser',
 					friends: response.data
 				});
             })

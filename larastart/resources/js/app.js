@@ -35,6 +35,7 @@ Vue.use(VueRouter);
 
 store.dispatch('getGames');
 store.dispatch('getFriends');
+store.dispatch('getCurrentUser');
 
 const app = new Vue({
 	store,

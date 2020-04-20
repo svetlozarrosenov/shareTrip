@@ -17,12 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('welcome');
-// });
-
-
 Route::apiResources( [
 	'/games' => 'API\GamesController',
 	'/friends' => 'API\FriendsController',
+	'/update-user' => 'API\UsersController',
+	'/get-user' => 'API\UsersController',
 ] );

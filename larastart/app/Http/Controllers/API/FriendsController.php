@@ -24,7 +24,7 @@ class FriendsController extends Controller
         return $friends;
     }
 
-    public function store($store) {
+    public function store( $store ) {
     	exit('store');
     }
 }
